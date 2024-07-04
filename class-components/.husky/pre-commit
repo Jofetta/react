@@ -1,3 +1,2 @@
 cd class-components
-
-npm run format
+npx prettier --check . && npm run lint
