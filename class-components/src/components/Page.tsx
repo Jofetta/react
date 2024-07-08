@@ -4,6 +4,7 @@ import SearchButton, { ButtonProps } from "./SearchButton";
 import fetchData from "./../utils";
 import CardsContainer from "./CardsContainer";
 import ErrorBoundary from "./ErrorBoundary";
+import ErrorButton from "./ErrorButton";
 
 export type ApiData = {
   query?: string;
@@ -52,6 +53,7 @@ export default class Page extends React.Component<ApiData> {
         <section>
           <Input {...inputProps} />
           <SearchButton {...props} />
+          <ErrorButton />
         </section>
         <ErrorBoundary fallback={<div>Something went wrong</div>}>
           <section>

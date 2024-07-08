@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import Page, { ApiData } from "./components/Page";
 import fetchData from "./utils";
+import ErrorBoundary from "./components/ErrorBoundary";
 
 class App extends React.Component<ApiData> {
   state: {
@@ -18,7 +19,13 @@ class App extends React.Component<ApiData> {
   }
 
   render() {
-    return <Page query={this.state.query} results={this.state.results} />;
+    return (
+      <ErrorBoundary
+        fallback={<div className="fallback">Ooops, the App crashed</div>}
+      >
+        <Page query={this.state.query} results={this.state.results} />;
+      </ErrorBoundary>
+    );
   }
 }
 

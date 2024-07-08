@@ -25,3 +25,13 @@
   font-size: larger;
   border-radius: 5px;
 }
+
+.fallback {
+  font-size: x-large;
+  color: red;
+}
+
+.error-button {
+  color: red;
+  margin-left: 20px;
+}
