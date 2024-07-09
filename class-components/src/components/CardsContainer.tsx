@@ -1,21 +1,49 @@
 import React from "react";
 import Card, { CardProps } from "./Card";
+import { ApiData } from "./Page";
+import { defaultURL } from "../utils";
+import Loader from "./Loader";
 
-export default class CardsContainer extends React.Component {
+type CardContainerProps = {
+  query: string;
+  apiData: ApiData;
+  isLoading: boolean
+}
+export default class CardsContainer extends React.Component<CardContainerProps> {
   apiData: {
-    results: CardProps[];
+    results?: CardProps[];
   };
-  constructor(props: { results: CardProps[] }) {
+  query: string;
+  isLoading: boolean;
+  constructor(props: CardContainerProps) {
     super(props);
-    this.apiData = props;
+    this.apiData = {};
+    this.query = '';
+    this.isLoading = true;
   }
+
+  componentDidMount() {
+    this.apiData = this.props.apiData;
+    this.query = this.props.query;
+    this.isLoading = this.props.isLoading;
+  }
+  
   render() {
-    return (
+    if (this.isLoading) {
+      return <Loader />;
+    }
+
+    if (this.query === undefined || this.query === '') {
+      return (
       <div className="cards-container">
-        {this.apiData.results.map((el) => {
+        {this.apiData.results?.map((el) => {
           return <Card key={el.name} {...el} />;
         })}
       </div>
     );
-  }
+    } else {
+    return <Card name={this.query} url={defaultURL + this.query} />
+    }
+    }
+    
 }

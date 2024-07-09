@@ -1,7 +1,7 @@
 import React, { ChangeEvent } from "react";
 import Input, { InputProps } from "./Input";
 import SearchButton, { ButtonProps } from "./SearchButton";
-import fetchData from "./../utils";
+import fetchData, { defaultURL, setLocalStorage } from "./../utils";
 import CardsContainer from "./CardsContainer";
 import ErrorBoundary from "./ErrorBoundary";
 import ErrorButton from "./ErrorButton";
@@ -14,26 +14,48 @@ export default class Page extends React.Component<ApiData> {
   state: {
     query?: string;
     results?: [];
-    apiData?: [];
+    apiData?: object;
+    loading: boolean;
   };
 
   constructor(props: ApiData) {
     super(props);
-    this.state = props;
+    this.state = { query: '', loading: true };
   }
 
   updateState(searchString?: string) {
-    this.setState({ searchString: searchString });
+    this.setState({ query: searchString });
   }
-  async handleClick() {
+  async fetchData() {
+    this.setState({ loading: true });
     const data = await fetchData();
     this.setState({
       apiData: data,
+      loading: false,
     });
   }
 
   componentDidMount() {
-    this.handleClick();
+    if (localStorage.getItem('pokemonQuery')) {
+    this.setState({query: localStorage.getItem('pokemonQuery')})
+    }
+    this.fetchData();
+  }
+
+
+  async handleClick() { 
+    if (this.state.query) {
+      setLocalStorage(this.state.query);
+      this.setState({ loading: true });
+      const data = await fetchData(defaultURL + this.state.query);
+      this.setState({
+        apiData: data,
+        loading: false,
+      });
+    } else {
+      setLocalStorage('');
+      this.fetchData();
+    }
   }
 
   render() {
@@ -41,12 +63,13 @@ export default class Page extends React.Component<ApiData> {
       callback: () => this.handleClick(),
     };
     const inputProps: InputProps = {
-      initialState: "",
+      initialState: this.state.query,
       callback: (e: ChangeEvent) => {
         if (e?.target instanceof HTMLInputElement)
           this.updateState(e.target.value);
       },
     };
+    
 
     return (
       <main>
@@ -57,7 +80,7 @@ export default class Page extends React.Component<ApiData> {
         </section>
         <ErrorBoundary fallback={<div>Something went wrong</div>}>
           <section>
-            {this.state.apiData && <CardsContainer {...this.state.apiData} />}
+            {this.state.apiData && <CardsContainer isLoading={this.state.loading} query={this.state.query ? this.state.query : ''} apiData={this.state.apiData} />}
           </section>
         </ErrorBoundary>
       </main>
