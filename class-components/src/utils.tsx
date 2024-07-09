@@ -17,5 +17,5 @@ export default async function fetchData(url = defaultURL) {
 }
 
 export function setLocalStorage(query: string) {
-  localStorage.setItem('pokemonQuery', query);
+  localStorage.setItem("pokemonQuery", query);
 }

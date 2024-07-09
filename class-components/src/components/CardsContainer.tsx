@@ -7,8 +7,8 @@ import Loader from "./Loader";
 type CardContainerProps = {
   query: string;
   apiData: ApiData;
-  isLoading: boolean
-}
+  isLoading: boolean;
+};
 export default class CardsContainer extends React.Component<CardContainerProps> {
   apiData: {
     results?: CardProps[];
@@ -17,33 +17,26 @@ export default class CardsContainer extends React.Component<CardContainerProps> 
   isLoading: boolean;
   constructor(props: CardContainerProps) {
     super(props);
-    this.apiData = {};
-    this.query = '';
-    this.isLoading = true;
-  }
-
-  componentDidMount() {
     this.apiData = this.props.apiData;
     this.query = this.props.query;
     this.isLoading = this.props.isLoading;
   }
-  
+
   render() {
     if (this.isLoading) {
       return <Loader />;
     }
 
-    if (this.query === undefined || this.query === '') {
+    if (this.query === undefined || this.query === "") {
       return (
-      <div className="cards-container">
-        {this.apiData.results?.map((el) => {
-          return <Card key={el.name} {...el} />;
-        })}
-      </div>
-    );
+        <div className="cards-container">
+          {this.apiData.results?.map((el) => {
+            return <Card key={el.name} {...el} />;
+          })}
+        </div>
+      );
     } else {
-    return <Card name={this.query} url={defaultURL + this.query} />
+      return <Card name={this.query} url={defaultURL + this.query} />;
     }
-    }
-    
+  }
 }

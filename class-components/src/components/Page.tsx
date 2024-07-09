@@ -20,7 +20,7 @@ export default class Page extends React.Component<ApiData> {
 
   constructor(props: ApiData) {
     super(props);
-    this.state = { query: '', loading: true };
+    this.state = { query: "", loading: true };
   }
 
   updateState(searchString?: string) {
@@ -31,31 +31,30 @@ export default class Page extends React.Component<ApiData> {
     const data = await fetchData();
     this.setState({
       apiData: data,
-      loading: false,
     });
+    this.setState({ loading: false });
   }
 
-  componentDidMount() {
-    if (localStorage.getItem('pokemonQuery')) {
-    this.setState({query: localStorage.getItem('pokemonQuery')})
+  async componentDidMount() {
+    if (localStorage.getItem("pokemonQuery")) {
+      this.setState({ query: localStorage.getItem("pokemonQuery") });
     }
     this.fetchData();
   }
 
-
-  async handleClick() { 
+  async handleClick() {
+    this.setState({ loading: true });
     if (this.state.query) {
       setLocalStorage(this.state.query);
-      this.setState({ loading: true });
       const data = await fetchData(defaultURL + this.state.query);
       this.setState({
         apiData: data,
-        loading: false,
       });
     } else {
-      setLocalStorage('');
+      setLocalStorage("");
       this.fetchData();
     }
+    this.setState({ loading: false });
   }
 
   render() {
@@ -69,7 +68,6 @@ export default class Page extends React.Component<ApiData> {
           this.updateState(e.target.value);
       },
     };
-    
 
     return (
       <main>
@@ -80,7 +78,13 @@ export default class Page extends React.Component<ApiData> {
         </section>
         <ErrorBoundary fallback={<div>Something went wrong</div>}>
           <section>
-            {this.state.apiData && <CardsContainer isLoading={this.state.loading} query={this.state.query ? this.state.query : ''} apiData={this.state.apiData} />}
+            {this.state.apiData && (
+              <CardsContainer
+                isLoading={this.state.loading}
+                query={this.state.query ? this.state.query : ""}
+                apiData={this.state.apiData}
+              />
+            )}
           </section>
         </ErrorBoundary>
       </main>

@@ -17,7 +17,7 @@ class Input extends React.Component<InputProps> {
   render() {
     return (
       <input
-        defaultValue={this.props.initialState ? this.props.initialState : ''}
+        defaultValue={this.props.initialState ? this.props.initialState : ""}
         className="input"
         placeholder="Enter pokemon name"
         onChange={(e) => {
