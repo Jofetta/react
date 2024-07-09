@@ -1,10 +1,10 @@
 import React, { ChangeEvent } from "react";
 
 export type InputProps = {
-  initialState: string;
+  initialState: string | undefined;
   callback: (e: ChangeEvent) => void;
 };
-class Input extends React.Component {
+class Input extends React.Component<InputProps> {
   handleUpdate: (e: ChangeEvent) => void;
   constructor(props: InputProps) {
     super(props);
@@ -17,6 +17,7 @@ class Input extends React.Component {
   render() {
     return (
       <input
+        defaultValue={this.props.initialState ? this.props.initialState : ""}
         className="input"
         placeholder="Enter pokemon name"
         onChange={(e) => {

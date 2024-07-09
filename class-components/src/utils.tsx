@@ -1,4 +1,4 @@
-const defaultURL = "https://pokeapi.co/api/v2/pokemon/";
+export const defaultURL = "https://pokeapi.co/api/v2/pokemon/";
 
 export default async function fetchData(url = defaultURL) {
   try {
@@ -14,4 +14,8 @@ export default async function fetchData(url = defaultURL) {
   } catch (error) {
     if (error instanceof Error) console.error(error.message);
   }
+}
+
+export function setLocalStorage(query: string) {
+  localStorage.setItem("pokemonQuery", query);
 }
