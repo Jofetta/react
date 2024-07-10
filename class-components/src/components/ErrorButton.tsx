@@ -1,14 +1,14 @@
-import React from "react";
+import React from 'react'
 
 export default class ErrorButton extends React.Component {
-  state = { isClicked: false };
+  state = { isClicked: false }
 
   throwError() {
-    this.setState({ isClicked: true });
+    this.setState({ isClicked: true })
   }
   render() {
     if (this.state.isClicked) {
-      throw new Error("User generated an error");
+      throw new Error('User generated an error')
     } else {
       return (
         <button
@@ -17,7 +17,7 @@ export default class ErrorButton extends React.Component {
         >
           Throw an Error
         </button>
-      );
+      )
     }
   }
 }

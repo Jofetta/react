@@ -1,8 +1,8 @@
-import React from "react";
-import "./App.css";
-import Page from "./components/Page";
+import React from 'react'
+import './App.css'
+import Page from './components/Page'
 
-import ErrorBoundary from "./components/ErrorBoundary";
+import ErrorBoundary from './components/ErrorBoundary'
 
 class App extends React.Component {
   render() {
@@ -12,8 +12,8 @@ class App extends React.Component {
       >
         <Page />
       </ErrorBoundary>
-    );
+    )
   }
 }
 
-export default App;
+export default App
