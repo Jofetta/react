@@ -40,9 +40,14 @@ export default class Page extends React.Component<ApiData> {
 
   async componentDidMount() {
     if (localStorage.getItem('pokemonQuery')) {
-      this.setState({ query: localStorage.getItem('pokemonQuery') });
-      this.setState({ tempquery: localStorage.getItem('pokemonQuery') });
-      this.handleClick();
+      const storedQuery = localStorage.getItem('pokemonQuery');
+      this.setState({ query: storedQuery });
+      this.setState({ tempquery: storedQuery });
+      const data = await fetchData(defaultURL + storedQuery);
+      this.setState({
+        apiData: data,
+      });
+       this.setState({ loading: false });
     } else {
       this.fetchData();
     }
@@ -55,11 +60,9 @@ export default class Page extends React.Component<ApiData> {
       this.setState({ query: this.state.tempquery });
       setLocalStorage(this.state.tempquery);
       const data = await fetchData(defaultURL + this.state.tempquery);
-      console.log(data);
       this.setState({
         apiData: data,
       });
-      console.log(this.state.apiData);
     } else {
       setLocalStorage('');
       this.fetchData();
