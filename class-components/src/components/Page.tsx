@@ -47,7 +47,7 @@ export default class Page extends React.Component<ApiData> {
       this.setState({
         apiData: data,
       });
-       this.setState({ loading: false });
+      this.setState({ loading: false });
     } else {
       this.fetchData();
     }

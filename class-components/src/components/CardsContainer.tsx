@@ -1,4 +1,3 @@
-import React from 'react';
 import Card, { CardProps } from './Card';
 import { ApiData } from './Page';
 import { defaultURL } from '../utils';
@@ -9,34 +8,22 @@ type CardContainerProps = {
   apiData: ApiData;
   isLoading: boolean;
 };
-export default class CardsContainer extends React.Component<CardContainerProps> {
-  apiData: {
-    results?: CardProps[];
-  };
-  query: string;
-  isLoading: boolean;
-  constructor(props: CardContainerProps) {
-    super(props);
-    this.apiData = this.props.apiData;
-    this.query = this.props.query;
-    this.isLoading = this.props.isLoading;
-  }
+export default function CardsContainer (props: CardContainerProps) {
 
-  render() {
-    if (this.isLoading) {
+    if (props.isLoading) {
       return <Loader />;
     }
 
-    if (this.query === undefined || this.query === '') {
+    if (props.query === undefined || props.query === '') {
       return (
         <div className="cards-container">
-          {this.apiData.results?.map((el) => {
+          {props.apiData.results?.map((el: CardProps) => {
             return <Card key={el.name} {...el} />;
           })}
         </div>
       );
     } else {
-      return <Card name={this.query} url={defaultURL + this.query} />;
+      return <Card name={props.query} url={defaultURL + props.query} />;
     }
-  }
+  
 }
