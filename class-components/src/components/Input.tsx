@@ -1,31 +1,21 @@
-import React, { ChangeEvent } from 'react';
+import { ChangeEvent } from 'react';
 
 export type InputProps = {
   initialState: string | undefined;
   callback: (e: ChangeEvent) => void;
 };
-class Input extends React.Component<InputProps> {
-  handleUpdate: (e: ChangeEvent) => void;
-  constructor(props: InputProps) {
-    super(props);
-    this.handleUpdate = (e) => props.callback(e);
-  }
+function Input (props: InputProps) {
 
-  updateValue(e: ChangeEvent) {
-    this.handleUpdate(e);
-  }
-  render() {
     return (
       <input
-        defaultValue={this.props.initialState ? this.props.initialState : ''}
+        defaultValue={props.initialState ? props.initialState : ''}
         className="input"
         placeholder="Enter pokemon name"
         onChange={(e) => {
-          this.updateValue(e);
+          props.callback(e);
         }}
       ></input>
     );
-  }
 }
 
 export default Input;

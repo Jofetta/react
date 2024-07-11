@@ -8,22 +8,20 @@ type CardContainerProps = {
   apiData: ApiData;
   isLoading: boolean;
 };
-export default function CardsContainer (props: CardContainerProps) {
+export default function CardsContainer(props: CardContainerProps) {
+  if (props.isLoading) {
+    return <Loader />;
+  }
 
-    if (props.isLoading) {
-      return <Loader />;
-    }
-
-    if (props.query === undefined || props.query === '') {
-      return (
-        <div className="cards-container">
-          {props.apiData.results?.map((el: CardProps) => {
-            return <Card key={el.name} {...el} />;
-          })}
-        </div>
-      );
-    } else {
-      return <Card name={props.query} url={defaultURL + props.query} />;
-    }
-  
+  if (props.query === undefined || props.query === '') {
+    return (
+      <div className="cards-container">
+        {props.apiData.results?.map((el: CardProps) => {
+          return <Card key={el.name} {...el} />;
+        })}
+      </div>
+    );
+  } else {
+    return <Card name={props.query} url={defaultURL + props.query} />;
+  }
 }

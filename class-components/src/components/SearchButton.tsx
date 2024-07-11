@@ -1,21 +1,13 @@
-import React from 'react';
-
 export type ButtonProps = {
   callback: () => void;
 };
-class SearchButton extends React.Component {
-  handleClick: () => void;
-  constructor(props: ButtonProps) {
-    super(props);
-    this.handleClick = () => props.callback();
-  }
-  render() {
+function SearchButton (props: ButtonProps) {
+
     return (
-      <button className="search-button" onClick={this.handleClick}>
+      <button className="search-button" onClick={props.callback}>
         Search
       </button>
     );
-  }
 }
 
 export default SearchButton;
