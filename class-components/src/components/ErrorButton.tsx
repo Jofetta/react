@@ -1,24 +1,22 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-export default function ErrorButton () {
-
+export default function ErrorButton() {
   const [errorState, setErrorState] = useState(false);
 
   function throwError() {
     setErrorState(true);
   }
 
-    if (errorState) {
-      throw new Error('User generated an error');
-    } else {
-      return (
-        <button
-          className="search-button error-button"
-          onClick={() => throwError()}
-        >
-          Throw an Error
-        </button>
-      );
-    }
-  
+  if (errorState) {
+    throw new Error('User generated an error');
+  } else {
+    return (
+      <button
+        className="search-button error-button"
+        onClick={() => throwError()}
+      >
+        Throw an Error
+      </button>
+    );
+  }
 }

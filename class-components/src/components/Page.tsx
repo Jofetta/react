@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import Input, { InputProps } from './Input';
 import SearchButton, { ButtonProps } from './SearchButton';
 import fetchData, { defaultURL, setLocalStorage } from './../utils';
@@ -10,99 +10,85 @@ export type ApiData = {
   query?: string;
   results?: [];
 };
-export default class Page extends React.Component<ApiData> {
-  state: {
-    query?: string;
-    results?: [];
-    apiData?: object;
-    loading: boolean;
-    tempquery?: string;
-  };
+export default function Page() {
+  const [query, setQuery] = useState('');
+  const [tempQuery, setTempQuery] = useState('');
+  const [apiData, setApiData] = useState({});
+  const [isLoading, setLoading] = useState(true);
 
-  constructor(props: ApiData) {
-    super(props);
-    this.state = { query: '', loading: true };
+  function updateState(searchString: string) {
+    setTempQuery(searchString);
   }
 
-  updateState(searchString?: string) {
-    this.setState({ tempquery: searchString });
+  async function fetchAPIData() {
+    setLoading(true);
+    const data: unknown = await fetchData();
+    if (data) setApiData(data);
+    setQuery('');
+    setLoading(false);
   }
 
-  async fetchData() {
-    this.setState({ loading: true });
-    const data = await fetchData();
-    this.setState({
-      apiData: data,
-    });
-    this.setState({ query: '' });
-    this.setState({ loading: false });
-  }
-
-  async componentDidMount() {
-    if (localStorage.getItem('pokemonQuery')) {
+  useEffect(() => {
+    async function onMount() {
       const storedQuery = localStorage.getItem('pokemonQuery');
-      this.setState({ query: storedQuery });
-      this.setState({ tempquery: storedQuery });
-      const data = await fetchData(defaultURL + storedQuery);
-      this.setState({
-        apiData: data,
-      });
-      this.setState({ loading: false });
-    } else {
-      this.fetchData();
+      if (storedQuery) {
+        setQuery(storedQuery);
+        setTempQuery(storedQuery);
+        const data = await fetchData(defaultURL + storedQuery);
+        setApiData(data);
+        setLoading(false);
+      } else {
+        fetchAPIData();
+      }
     }
-  }
+    onMount();
+  }, []);
 
-  async handleClick() {
-    this.setState({ loading: true });
-    if (this.state.tempquery) {
-      this.setState({ query: '' });
-      this.setState({ query: this.state.tempquery });
-      setLocalStorage(this.state.tempquery);
-      const data = await fetchData(defaultURL + this.state.tempquery);
-      this.setState({
-        apiData: data,
-      });
+  async function handleClick() {
+    setLoading(true);
+    if (tempQuery) {
+      setQuery('');
+      setQuery(tempQuery);
+      setLocalStorage(tempQuery);
+      const data = await fetchData(defaultURL + tempQuery);
+      setApiData(data);
     } else {
       setLocalStorage('');
-      this.fetchData();
+      fetchAPIData();
     }
-    this.setState({ loading: false });
+    setLoading(false);
   }
 
-  render() {
-    const props: ButtonProps = {
-      callback: () => this.handleClick(),
-    };
-    const inputProps: InputProps = {
-      initialState: this.state.query,
-      callback: (e: ChangeEvent) => {
-        if (e?.target instanceof HTMLInputElement)
-          this.updateState(e.target.value);
-      },
-    };
+  const props: ButtonProps = {
+    callback: () => handleClick(),
+  };
+  const inputProps: InputProps = {
+    initialState: query,
+    callback: (e: ChangeEvent) => {
+      if (e?.target instanceof HTMLInputElement) updateState(e.target.value);
+    },
+  };
 
-    return (
-      <main>
+  return (
+    <main>
+      <section>
+        <Input {...inputProps} />
+        <SearchButton {...props} />
+        <ErrorButton />
+      </section>
+      <ErrorBoundary fallback={<div>Something went wrong</div>}>
         <section>
-          <Input {...inputProps} />
-          <SearchButton {...props} />
-          <ErrorButton />
+          {apiData && (
+            <CardsContainer
+              key={`key_${isLoading}_${query}`}
+              isLoading={isLoading}
+              query={query ? query : ''}
+              apiData={apiData}
+            />
+          )}
+          {apiData === undefined && <div>No results</div>}
         </section>
-        <ErrorBoundary fallback={<div>Something went wrong</div>}>
-          <section>
-            {this.state.apiData && (
-              <CardsContainer
-                key={'key_' + this.state.loading + '_' + this.state.query}
-                isLoading={this.state.loading}
-                query={this.state.query ? this.state.query : ''}
-                apiData={this.state.apiData}
-              />
-            )}
-            {this.state.apiData === undefined && <div>No results</div>}
-          </section>
-        </ErrorBoundary>
-      </main>
-    );
-  }
+      </ErrorBoundary>
+    </main>
+  );
 }
