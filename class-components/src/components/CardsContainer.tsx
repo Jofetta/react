@@ -1,5 +1,5 @@
 import Card, { CardProps } from './Card';
-import { ApiData } from './Page';
+import { ApiData } from '../pages/MainPage';
 import { defaultURL } from '../utils/api';
 import Loader from './Loader';
 

@@ -1,12 +1,12 @@
 import { ChangeEvent, useEffect, useState } from 'react';
-import Input, { InputProps } from './Input';
-import SearchButton, { ButtonProps } from './SearchButton';
+import Input, { InputProps } from '../components/Input';
+import SearchButton, { ButtonProps } from '../components/SearchButton';
 import fetchData, { defaultURL } from '../utils/api';
-import CardsContainer from './CardsContainer';
-import ErrorBoundary from './ErrorBoundary';
-import ErrorButton from './ErrorButton';
+import CardsContainer from '../components/CardsContainer';
+import ErrorBoundary from '../components/ErrorBoundary';
+import ErrorButton from '../components/ErrorButton';
 import useLocalStorage from '../utils/localStorage';
-import PaginationButton from './PaginationButton';
+import PaginationButton from '../components/PaginationButton';
 
 export type ApiData = {
   query?: string;
@@ -14,7 +14,7 @@ export type ApiData = {
   next?: string;
   previous?: string;
 };
-export default function Page() {
+export default function MainPage() {
   const { query, setQuery } = useLocalStorage('pokemonQuery', '');
   const [tempQuery, setTempQuery] = useState('');
   const [apiData, setApiData] = useState<ApiData>({});
