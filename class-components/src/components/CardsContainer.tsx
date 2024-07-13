@@ -1,6 +1,6 @@
 import Card, { CardProps } from './Card';
 import { ApiData } from './Page';
-import { defaultURL } from '../utils';
+import { defaultURL } from '../utils/api';
 import Loader from './Loader';
 
 type CardContainerProps = {

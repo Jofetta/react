@@ -1,17 +1,18 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 import Input, { InputProps } from './Input';
 import SearchButton, { ButtonProps } from './SearchButton';
-import fetchData, { defaultURL, setLocalStorage } from './../utils';
+import fetchData, { defaultURL } from '../utils/api';
 import CardsContainer from './CardsContainer';
 import ErrorBoundary from './ErrorBoundary';
 import ErrorButton from './ErrorButton';
+import useLocalStorage from '../utils/localStorage';
 
 export type ApiData = {
   query?: string;
   results?: [];
 };
 export default function Page() {
-  const [query, setQuery] = useState('');
+  const { query, setQuery } = useLocalStorage('pokemonQuery', '');
   const [tempQuery, setTempQuery] = useState('');
   const [apiData, setApiData] = useState({});
   const [isLoading, setLoading] = useState(true);
@@ -24,17 +25,13 @@ export default function Page() {
     setLoading(true);
     const data: unknown = await fetchData();
     if (data) setApiData(data);
-    setQuery('');
     setLoading(false);
   }
 
   useEffect(() => {
     async function onMount() {
-      const storedQuery = localStorage.getItem('pokemonQuery');
-      if (storedQuery) {
-        setQuery(storedQuery);
-        setTempQuery(storedQuery);
-        const data = await fetchData(defaultURL + storedQuery);
+      if (query) {
+        const data = await fetchData(defaultURL + query);
         setApiData(data);
         setLoading(false);
       } else {
@@ -42,18 +39,16 @@ export default function Page() {
       }
     }
     onMount();
-  }, []);
+  }, [query]);
 
   async function handleClick() {
     setLoading(true);
     if (tempQuery) {
-      setQuery('');
       setQuery(tempQuery);
-      setLocalStorage(tempQuery);
       const data = await fetchData(defaultURL + tempQuery);
       setApiData(data);
     } else {
-      setLocalStorage('');
+      setQuery('');
       fetchAPIData();
     }
     setLoading(false);

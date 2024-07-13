@@ -15,7 +15,3 @@ export default async function fetchData(url = defaultURL) {
     if (error instanceof Error) console.error(error.message);
   }
 }
-
-export function setLocalStorage(query: string) {
-  localStorage.setItem('pokemonQuery', query);
-}
