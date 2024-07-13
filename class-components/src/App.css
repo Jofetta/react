@@ -35,3 +35,18 @@
   color: red;
   margin-left: 20px;
 }
+
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.disabled {
+  pointer-events: none;
+}
+
+.pagination-forward,
+.pagination-back {
+  cursor: pointer;
+}
