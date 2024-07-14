@@ -1,7 +1,7 @@
 import { ChangeEvent } from 'react';
 
 export type InputProps = {
-  initialState: string | undefined;
+  initialState: string | undefined | null;
   callback: (e: ChangeEvent) => void;
 };
 function Input(props: InputProps) {

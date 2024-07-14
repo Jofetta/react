@@ -13,7 +13,9 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<MainPage />} />
-          <Route path="/home" element={<MainPage />} />
+          <Route path="/page" element={<MainPage />}>
+            <Route path=":id" element={<MainPage />} />
+          </Route>
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </BrowserRouter>
