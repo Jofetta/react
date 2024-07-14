@@ -53,6 +53,9 @@
 .pagination-forward,
 .pagination-back {
   cursor: pointer;
+  border-radius: 5px;
+  border: 1px solid black;
+  padding: 1px 5px;
 }
 
 .background {
@@ -77,4 +80,10 @@
   border: 1px solid black;
   margin: 2%;
   padding: 5%;
+}
+
+.close-button {
+  position: absolute;
+  right: 20px;
+  top: 20px;
 }
