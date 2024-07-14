@@ -1,2 +1,2 @@
 cd class-components
-npx prettier --check . && npm run lint
+npx prettier --check . && npm run lint && npm run coverage

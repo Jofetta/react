@@ -3,7 +3,7 @@ import { ApiData } from '../pages/MainPage';
 import { defaultURL } from '../utils/api';
 import Loader from './Loader';
 
-type CardContainerProps = {
+export type CardContainerProps = {
   query: string;
   apiData: ApiData;
   isLoading: boolean;
