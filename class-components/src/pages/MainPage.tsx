@@ -7,7 +7,7 @@ import ErrorBoundary from '../components/ErrorBoundary';
 import ErrorButton from '../components/ErrorButton';
 import useLocalStorage from '../utils/localStorage';
 import PaginationButton from '../components/PaginationButton';
-import { useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import { useSearchParams } from 'react-router-dom';
 
 export type ApiData = {
@@ -33,13 +33,6 @@ export default function MainPage() {
   function updateState(searchString: string) {
     setTempQuery(searchString);
   }
-
-  // async function fetchAPIData() {
-  //   setLoading(true);
-  //   const data: unknown = await fetchData();
-  //   if (data) setApiData(data);
-  //   setLoading(false);
-  // }
 
   async function fetchPageData(page: number) {
     setLoading(true);
@@ -84,7 +77,7 @@ export default function MainPage() {
       setSearchParams({ page: '1', search: '' });
       setQuery('');
       fetchPageData(currentPage);
-      navigate('/');
+      navigate('/?page=1');
     }
     setCurrentPage(1);
     setLoading(false);
@@ -125,25 +118,30 @@ export default function MainPage() {
         <section>
           {apiData && (
             <div>
-              <CardsContainer
-                key={`key_${isLoading}_${query}`}
-                isLoading={isLoading}
-                query={query ? query : ''}
-                apiData={apiData}
-              />
-              <div className="pagination-container">
-                <PaginationButton
-                  classList="pagination-back"
-                  callback={() => changePage(false)}
-                  currentPage={currentPage}
+              <div className="container">
+                <CardsContainer
+                  key={`key_${isLoading}_${query}`}
+                  isLoading={isLoading}
+                  query={query ? query : ''}
+                  apiData={apiData}
                 />
-                <div>{currentPage}</div>
-                <PaginationButton
-                  classList="pagination-forward"
-                  callback={() => changePage(true)}
-                  currentPage={currentPage}
-                />
+                <Outlet />
               </div>
+              {apiData.results && (
+                <div className="pagination-container">
+                  <PaginationButton
+                    classList="pagination-back"
+                    callback={() => changePage(false)}
+                    currentPage={currentPage}
+                  />
+                  <div>{currentPage}</div>
+                  <PaginationButton
+                    classList="pagination-forward"
+                    callback={() => changePage(true)}
+                    currentPage={currentPage}
+                  />
+                </div>
+              )}
             </div>
           )}
           {apiData === undefined && <div>No results</div>}
