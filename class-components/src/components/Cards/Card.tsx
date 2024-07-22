@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import fetchData from '../utils/api';
+import fetchData from '../../utils/api';
 import { useNavigate } from 'react-router-dom';
 
 export type CardProps = {

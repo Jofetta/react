@@ -1,7 +1,7 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import fetchData, { defaultURL } from '../utils/api';
-import Loader from '../components/Loader';
+import fetchData, { defaultURL } from '../../utils/api';
+import Loader from '../../components/Loader';
 
 export default function DetailPage() {
   const { id } = useParams();

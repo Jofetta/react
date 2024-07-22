@@ -1,10 +1,10 @@
 import './App.css';
-import MainPage from './pages/MainPage';
-import NotFoundPage from './pages/NotFoundPage';
-import DetailPage from './pages/DetailPage';
+import MainPage from './pages/MainPage/MainPage';
+import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
+import DetailPage from './pages/DetailPage/DetailPage';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import ErrorBoundary from './components/ErrorBoundary';
+import ErrorBoundary from './components/ErrorJHandling/ErrorBoundary';
 
 function App() {
   return (

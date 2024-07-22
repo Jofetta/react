@@ -1,7 +1,7 @@
 import Card, { CardProps } from './Card';
-import { ApiData } from '../pages/MainPage';
-import { defaultURL } from '../utils/api';
-import Loader from './Loader';
+import { ApiData } from '../../pages/MainPage/MainPage';
+import { defaultURL } from '../../utils/api';
+import Loader from '../Loader';
 
 export type CardContainerProps = {
   query: string;
