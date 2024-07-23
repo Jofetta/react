@@ -1,14 +1,17 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 import Input, { InputProps } from '../../components/Input';
-import SearchButton, { ButtonProps } from '../../components/SearchButton';
+import SearchButton, {
+  ButtonProps,
+} from '../../components/Buttons/SearchButton';
 import fetchData, { defaultURL } from '../../utils/api';
 import CardsContainer from '../../components/Cards/CardsContainer';
 import ErrorBoundary from '../../components/ErrorJHandling/ErrorBoundary';
 import ErrorButton from '../../components/ErrorJHandling/ErrorButton';
 import useLocalStorage from '../../utils/localStorage';
-import PaginationButton from '../../components/PaginationButton';
+import PaginationButton from '../../components/Buttons/PaginationButton';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { useSearchParams } from 'react-router-dom';
+import { ThemeButton } from '../../components/Buttons/ThemeButton';
 
 export type ApiData = {
   query?: string;
@@ -113,6 +116,7 @@ export default function MainPage() {
         <Input {...inputProps} />
         <SearchButton {...props} />
         <ErrorButton />
+        <ThemeButton />
       </section>
       <ErrorBoundary fallback={<div>Something went wrong</div>}>
         <section>

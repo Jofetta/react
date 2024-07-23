@@ -1,0 +1,47 @@
+.pagination-forward,
+.pagination-back {
+  cursor: pointer;
+  border-radius: 5px;
+  border: 1px solid black;
+  padding: 1px 5px;
+}
+
+.disabled {
+  pointer-events: none;
+}
+
+.error-button {
+  color: red;
+  margin-left: 20px;
+}
+
+.close-button {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+
+.theme-button-container {
+  display: inline-flex;
+  width: 40px;
+  background-color: lightgrey;
+  margin-left: 10px;
+  border-radius: 10px;
+}
+
+.theme-button,
+.theme-button-dark {
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+}
+
+.theme-button {
+  background-color: gray;
+}
+
+.theme-button-dark {
+  background-color: black;
+  position: relative;
+  left: 20px;
+}
