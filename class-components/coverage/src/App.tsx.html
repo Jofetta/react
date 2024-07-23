@@ -25,7 +25,7 @@
           <div class="fl pad1y space-right2">
             <span class="strong">0% </span>
             <span class="quiet">Statements</span>
-            <span class="fraction">0/21</span>
+            <span class="fraction">0/24</span>
           </div>
 
           <div class="fl pad1y space-right2">
@@ -43,7 +43,7 @@
           <div class="fl pad1y space-right2">
             <span class="strong">0% </span>
             <span class="quiet">Lines</span>
-            <span class="fraction">0/21</span>
+            <span class="fraction">0/24</span>
           </div>
         </div>
         <p class="quiet">
@@ -85,7 +85,30 @@
 <a name='L24'></a><a href='#L24'>24</a>
 <a name='L25'></a><a href='#L25'>25</a>
 <a name='L26'></a><a href='#L26'>26</a>
-<a name='L27'></a><a href='#L27'>27</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L27'></a><a href='#L27'>27</a>
+<a name='L28'></a><a href='#L28'>28</a>
+<a name='L29'></a><a href='#L29'>29</a>
+<a name='L30'></a><a href='#L30'>30</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -94,45 +117,31 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >import './App.css';<span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ></span></span></span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >import './App.scss';<span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ></span></span></span>
 <span class="cstat-no" title="statement not covered" >import MainPage from './pages/MainPage/MainPage';</span>
 <span class="cstat-no" title="statement not covered" >import NotFoundPage from './pages/NotFoundPage/NotFoundPage';</span>
 <span class="cstat-no" title="statement not covered" >import DetailPage from './pages/DetailPage/DetailPage';</span>
 <span class="cstat-no" title="statement not covered" >import { BrowserRouter, Route, Routes } from 'react-router-dom';</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >import ErrorBoundary from './components/ErrorJHandling/ErrorBoundary';</span>
+<span class="cstat-no" title="statement not covered" >import { ThemeProvider } from './context/ThemeContext';</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >function App() {</span>
 <span class="cstat-no" title="statement not covered" >  return (</span>
-<span class="cstat-no" title="statement not covered" >    &lt;ErrorBoundary</span>
-<span class="cstat-no" title="statement not covered" >      fallback={&lt;div className="fallback"&gt;Ooops, the App crashed&lt;/div&gt;}</span>
-    &gt;
-<span class="cstat-no" title="statement not covered" >      &lt;BrowserRouter&gt;</span>
-<span class="cstat-no" title="statement not covered" >        &lt;Routes&gt;</span>
-<span class="cstat-no" title="statement not covered" >          &lt;Route path="/" element={&lt;MainPage /&gt;}&gt;</span>
-<span class="cstat-no" title="statement not covered" >            &lt;Route path="pokemon/:id" element={&lt;DetailPage /&gt;} /&gt;</span>
-<span class="cstat-no" title="statement not covered" >          &lt;/Route&gt;</span>
-<span class="cstat-no" title="statement not covered" >          &lt;Route path="*" element={&lt;NotFoundPage /&gt;} /&gt;</span>
-<span class="cstat-no" title="statement not covered" >        &lt;/Routes&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;/BrowserRouter&gt;</span>
-<span class="cstat-no" title="statement not covered" >    &lt;/ErrorBoundary&gt;</span>
+<span class="cstat-no" title="statement not covered" >    &lt;ThemeProvider&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;ErrorBoundary</span>
+<span class="cstat-no" title="statement not covered" >        fallback={&lt;div className="fallback"&gt;Ooops, the App crashed&lt;/div&gt;}</span>
+      &gt;
+<span class="cstat-no" title="statement not covered" >        &lt;BrowserRouter&gt;</span>
+<span class="cstat-no" title="statement not covered" >          &lt;Routes&gt;</span>
+<span class="cstat-no" title="statement not covered" >            &lt;Route path="/" element={&lt;MainPage /&gt;}&gt;</span>
+<span class="cstat-no" title="statement not covered" >              &lt;Route path="pokemon/:id" element={&lt;DetailPage /&gt;} /&gt;</span>
+<span class="cstat-no" title="statement not covered" >            &lt;/Route&gt;</span>
+<span class="cstat-no" title="statement not covered" >            &lt;Route path="*" element={&lt;NotFoundPage /&gt;} /&gt;</span>
+<span class="cstat-no" title="statement not covered" >          &lt;/Routes&gt;</span>
+<span class="cstat-no" title="statement not covered" >        &lt;/BrowserRouter&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;/ErrorBoundary&gt;</span>
+<span class="cstat-no" title="statement not covered" >    &lt;/ThemeProvider&gt;</span>
   );
 <span class="cstat-no" title="statement not covered" >}</span>
 &nbsp;
@@ -151,7 +160,7 @@
         rel="noopener noreferrer"
         >istanbul</a
       >
-      at 2024-07-22T11:14:36.095Z
+      at 2024-07-23T16:07:37.697Z
     </div>
     <script src="../prettify.js"></script>
     <script>

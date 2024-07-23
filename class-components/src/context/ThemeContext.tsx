@@ -1,10 +1,6 @@
 import React, { useState } from 'react';
 
-const initialTheme: ThemeState = {
-  darkTheme: false,
-};
-
-export interface ThemeState {
+interface ThemeState {
   darkTheme: boolean;
 }
 
@@ -15,6 +11,10 @@ interface ContextProps {
 interface ThemeUpdater {
   updater: () => void;
 }
+
+const initialTheme: ThemeState = {
+  darkTheme: false,
+};
 
 const initialUpdater = {
   updater: () => {},

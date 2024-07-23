@@ -23,9 +23,9 @@
         </h1>
         <div class="clearfix">
           <div class="fl pad1y space-right2">
-            <span class="strong">58.51% </span>
+            <span class="strong">59.12% </span>
             <span class="quiet">Statements</span>
-            <span class="fraction">79/135</span>
+            <span class="fraction">81/137</span>
           </div>
 
           <div class="fl pad1y space-right2">
@@ -41,9 +41,9 @@
           </div>
 
           <div class="fl pad1y space-right2">
-            <span class="strong">58.51% </span>
+            <span class="strong">59.12% </span>
             <span class="quiet">Lines</span>
-            <span class="fraction">79/135</span>
+            <span class="fraction">81/137</span>
           </div>
         </div>
         <p class="quiet">
@@ -213,7 +213,9 @@
 <a name='L152'></a><a href='#L152'>152</a>
 <a name='L153'></a><a href='#L153'>153</a>
 <a name='L154'></a><a href='#L154'>154</a>
-<a name='L155'></a><a href='#L155'>155</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L155'></a><a href='#L155'>155</a>
+<a name='L156'></a><a href='#L156'>156</a>
+<a name='L157'></a><a href='#L157'>157</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -226,6 +228,7 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -324,6 +327,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
@@ -380,6 +384,7 @@ import useLocalStorage from '../../utils/localStorage';
 import PaginationButton from '../../components/Buttons/PaginationButton';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { useSearchParams } from 'react-router-dom';
+import { ThemeButton } from '../../components/Buttons/ThemeButton';
 &nbsp;
 export type ApiData = {
   query?: string;
@@ -484,6 +489,7 @@ export default function MainPage() {
         &lt;Input {...inputProps} /&gt;
         &lt;SearchButton {...props} /&gt;
         &lt;ErrorButton /&gt;
+        &lt;ThemeButton /&gt;
       &lt;/section&gt;
       &lt;ErrorBoundary fallback={&lt;div&gt;Something went wrong&lt;/div&gt;}&gt;
         &lt;section&gt;
@@ -535,7 +541,7 @@ export default function MainPage() {
         rel="noopener noreferrer"
         >istanbul</a
       >
-      at 2024-07-22T11:14:36.095Z
+      at 2024-07-23T16:07:37.697Z
     </div>
     <script src="../../../prettify.js"></script>
     <script>

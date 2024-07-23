@@ -1,7 +1,8 @@
 import { useParams, useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import fetchData, { defaultURL } from '../../utils/api';
 import Loader from '../../components/Loader';
+import { ThemeContext } from '../../context/ThemeContext';
 
 export default function DetailPage() {
   const { id } = useParams();
@@ -12,6 +13,7 @@ export default function DetailPage() {
   const [speed, setSpeed] = useState('');
   const [isLoading, setLoading] = useState(true);
   const navigate = useNavigate();
+  const darkTheme = useContext(ThemeContext);
 
   useEffect(() => {
     const getData = async () => {
@@ -33,7 +35,7 @@ export default function DetailPage() {
 
   return (
     <>
-      <div className="details">
+      <div className={darkTheme.darkTheme ? 'details dark' : 'details'}>
         <button className="close-button" onClick={closeDetails}>
           X
         </button>

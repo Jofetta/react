@@ -1,15 +1,17 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Code coverage report for src/utils/api.tsx</title>
+    <title>
+      Code coverage report for src/components/Buttons/ThemeButton.tsx
+    </title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../../prettify.css" />
-    <link rel="stylesheet" href="../../base.css" />
-    <link rel="shortcut icon" type="image/x-icon" href="../../favicon.png" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../../favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style type="text/css">
       .coverage-summary .sorter {
-        background-image: url(../../sort-arrow-sprite.png);
+        background-image: url(../../../sort-arrow-sprite.png);
       }
     </style>
   </head>
@@ -18,14 +20,14 @@
     <div class="wrapper">
       <div class="pad1">
         <h1>
-          <a href="../../index.html">All files</a> /
-          <a href="index.html">src/utils</a> api.tsx
+          <a href="../../../index.html">All files</a> /
+          <a href="index.html">src/components/Buttons</a> ThemeButton.tsx
         </h1>
         <div class="clearfix">
           <div class="fl pad1y space-right2">
-            <span class="strong">46.66% </span>
+            <span class="strong">100% </span>
             <span class="quiet">Statements</span>
-            <span class="fraction">7/15</span>
+            <span class="fraction">15/15</span>
           </div>
 
           <div class="fl pad1y space-right2">
@@ -41,9 +43,9 @@
           </div>
 
           <div class="fl pad1y space-right2">
-            <span class="strong">46.66% </span>
+            <span class="strong">100% </span>
             <span class="quiet">Lines</span>
-            <span class="fraction">7/15</span>
+            <span class="fraction">15/15</span>
           </div>
         </div>
         <p class="quiet">
@@ -57,7 +59,7 @@
           </div>
         </template>
       </div>
-      <div class="status-line low"></div>
+      <div class="status-line high"></div>
       <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -77,38 +79,38 @@
 <a name='L16'></a><a href='#L16'>16</a>
 <a name='L17'></a><a href='#L17'>17</a>
 <a name='L18'></a><a href='#L18'>18</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">12x</span>
-<span class="cline-any cline-yes">12x</span>
-<span class="cline-any cline-yes">12x</span>
-<span class="cline-any cline-yes">12x</span>
-<span class="cline-any cline-yes">12x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">12x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">export const defaultURL = 'https://pokeapi.co/api/v2/pokemon/';
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { useContext } from 'react';
+import { ThemeContext, ThemeUpdate } from '../../context/ThemeContext';
 &nbsp;
-export default async function fetchData(url = defaultURL) {
-  try {
-    const response = await fetch(url, {
-      method: 'GET',
-    }<span class="branch-0 cbranch-no" title="branch not covered" >);</span>
-<span class="cstat-no" title="statement not covered" >    if (!response.ok) {</span>
-<span class="cstat-no" title="statement not covered" >      throw new Error(`Response status: ${response.status}`);</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
-&nbsp;
-<span class="cstat-no" title="statement not covered" >    const json = await response.json();</span>
-<span class="cstat-no" title="statement not covered" >    return json;</span>
-<span class="cstat-no" title="statement not covered" >  } catch (error) {</span>
-<span class="cstat-no" title="statement not covered" >    if (error instanceof Error) console.error(error.message);</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
+export function ThemeButton() {
+  const darkTheme = useContext(ThemeContext);
+  const toggleTheme = useContext(ThemeUpdate);
+  return (
+    &lt;&gt;
+      &lt;span className="theme-button-name"&gt; Dark Theme&lt;/span&gt;
+      &lt;div className="theme-button-container" onClick={toggleTheme.updater}&gt;
+        &lt;div
+          className={darkTheme.<span class="branch-0 cbranch-no" title="branch not covered" >darkTheme ? 'theme-button-dark' : '</span>theme-button'}
+        &gt;&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/&gt;
+  );
 }
 &nbsp;</pre></td></tr></table></pre>
 
@@ -126,13 +128,13 @@ export default async function fetchData(url = defaultURL) {
       >
       at 2024-07-23T16:07:37.697Z
     </div>
-    <script src="../../prettify.js"></script>
+    <script src="../../../prettify.js"></script>
     <script>
       window.onload = function () {
         prettyPrint();
       };
     </script>
-    <script src="../../sorter.js"></script>
-    <script src="../../block-navigation.js"></script>
+    <script src="../../../sorter.js"></script>
+    <script src="../../../block-navigation.js"></script>
   </body>
 </html>

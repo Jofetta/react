@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import fetchData from '../../utils/api';
 import { useNavigate } from 'react-router-dom';
+import { ThemeContext } from '../../context/ThemeContext';
 
 export type CardProps = {
   name: string;
@@ -10,6 +11,7 @@ export type CardProps = {
 export default function Card(props: CardProps) {
   const [imageURL, setImageURL] = useState('');
   const navigate = useNavigate();
+  const darkTheme = useContext(ThemeContext);
 
   useEffect(() => {
     const getImage = async () => {
@@ -24,7 +26,10 @@ export default function Card(props: CardProps) {
   }
 
   return (
-    <div className="card" onClick={handleClick}>
+    <div
+      className={darkTheme.darkTheme ? 'card dark' : 'card'}
+      onClick={handleClick}
+    >
       <h1>{props.name}</h1>
       <img src={imageURL} alt="pokemon-image" />
     </div>

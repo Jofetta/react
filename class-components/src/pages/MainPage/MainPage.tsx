@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, useContext, useEffect, useState } from 'react';
 import Input, { InputProps } from '../../components/Input';
 import SearchButton, {
   ButtonProps,
@@ -12,6 +12,7 @@ import PaginationButton from '../../components/Buttons/PaginationButton';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { useSearchParams } from 'react-router-dom';
 import { ThemeButton } from '../../components/Buttons/ThemeButton';
+import { ThemeContext } from '../../context/ThemeContext';
 
 export type ApiData = {
   query?: string;
@@ -32,6 +33,7 @@ export default function MainPage() {
     searchParams.get('page') ? Number(searchParams.get('page')) : 1
   );
   const navigate = useNavigate();
+  const darkTheme = useContext(ThemeContext);
 
   function updateState(searchString: string) {
     setTempQuery(searchString);
@@ -111,7 +113,7 @@ export default function MainPage() {
   };
 
   return (
-    <main>
+    <main className={darkTheme.darkTheme ? 'main dark' : 'main'}>
       <section>
         <Input {...inputProps} />
         <SearchButton {...props} />
