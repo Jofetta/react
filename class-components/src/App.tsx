@@ -6,23 +6,27 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import ErrorBoundary from './components/ErrorJHandling/ErrorBoundary';
 import { ThemeProvider } from './context/ThemeContext';
+import { Provider } from 'react-redux';
+import { store } from './utils/store';
 
 function App() {
   return (
-    <ThemeProvider>
-      <ErrorBoundary
-        fallback={<div className="fallback">Ooops, the App crashed</div>}
-      >
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<MainPage />}>
-              <Route path="pokemon/:id" element={<DetailPage />} />
-            </Route>
-            <Route path="*" element={<NotFoundPage />} />
-          </Routes>
-        </BrowserRouter>
-      </ErrorBoundary>
-    </ThemeProvider>
+    <Provider store={store}>
+      <ThemeProvider>
+        <ErrorBoundary
+          fallback={<div className="fallback">Ooops, the App crashed</div>}
+        >
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<MainPage />}>
+                <Route path="pokemon/:id" element={<DetailPage />} />
+              </Route>
+              <Route path="*" element={<NotFoundPage />} />
+            </Routes>
+          </BrowserRouter>
+        </ErrorBoundary>
+      </ThemeProvider>
+    </Provider>
   );
 }
 
