@@ -1,0 +1,75 @@
+{
+  "result": [
+    {
+      "scriptId": "1006",
+      "url": "file:///C:/Users/Tatiana/Documents/Stage1/Stage3/React-stage3/react/class-components/src/setupTests.ts",
+      "functions": [
+        {
+          "functionName": "",
+          "ranges": [{ "startOffset": 0, "endOffset": 1101, "count": 1 }],
+          "isBlockCoverage": true
+        },
+        {
+          "functionName": "",
+          "ranges": [{ "startOffset": 13, "endOffset": 1101, "count": 1 }],
+          "isBlockCoverage": true
+        }
+      ]
+    },
+    {
+      "scriptId": "1272",
+      "url": "file:///C:/Users/Tatiana/Documents/Stage1/Stage3/React-stage3/react/class-components/src/components/ErrorJHandling/ErrorButton.test.tsx",
+      "functions": [
+        {
+          "functionName": "",
+          "ranges": [{ "startOffset": 0, "endOffset": 2844, "count": 1 }],
+          "isBlockCoverage": true
+        },
+        {
+          "functionName": "",
+          "ranges": [{ "startOffset": 13, "endOffset": 2844, "count": 1 }],
+          "isBlockCoverage": true
+        },
+        {
+          "functionName": "",
+          "ranges": [{ "startOffset": 784, "endOffset": 1574, "count": 1 }],
+          "isBlockCoverage": true
+        }
+      ]
+    },
+    {
+      "scriptId": "1447",
+      "url": "file:///C:/Users/Tatiana/Documents/Stage1/Stage3/React-stage3/react/class-components/src/components/ErrorJHandling/ErrorButton.tsx",
+      "functions": [
+        {
+          "functionName": "",
+          "ranges": [{ "startOffset": 0, "endOffset": 2642, "count": 1 }],
+          "isBlockCoverage": true
+        },
+        {
+          "functionName": "",
+          "ranges": [{ "startOffset": 13, "endOffset": 2642, "count": 1 }],
+          "isBlockCoverage": true
+        },
+        {
+          "functionName": "ErrorButton",
+          "ranges": [
+            { "startOffset": 437, "endOffset": 1143, "count": 1 },
+            { "startOffset": 612, "endOffset": 665, "count": 0 }
+          ],
+          "isBlockCoverage": true
+        },
+        {
+          "functionName": "throwError",
+          "ranges": [{ "startOffset": 541, "endOffset": 593, "count": 0 }],
+          "isBlockCoverage": false
+        },
+        {
+          "functionName": "onClick",
+          "ranges": [{ "startOffset": 820, "endOffset": 838, "count": 0 }],
+          "isBlockCoverage": false
+        }
+      ]
+    }
+  ]
+}

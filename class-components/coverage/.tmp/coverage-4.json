@@ -1,0 +1,83 @@
+{
+  "result": [
+    {
+      "scriptId": "1006",
+      "url": "file:///C:/Users/Tatiana/Documents/Stage1/Stage3/React-stage3/react/class-components/src/setupTests.ts",
+      "functions": [
+        {
+          "functionName": "",
+          "ranges": [{ "startOffset": 0, "endOffset": 1101, "count": 1 }],
+          "isBlockCoverage": true
+        },
+        {
+          "functionName": "",
+          "ranges": [{ "startOffset": 13, "endOffset": 1101, "count": 1 }],
+          "isBlockCoverage": true
+        }
+      ]
+    },
+    {
+      "scriptId": "1272",
+      "url": "file:///C:/Users/Tatiana/Documents/Stage1/Stage3/React-stage3/react/class-components/src/components/Buttons/PaginationButton.test.tsx",
+      "functions": [
+        {
+          "functionName": "",
+          "ranges": [{ "startOffset": 0, "endOffset": 4843, "count": 1 }],
+          "isBlockCoverage": true
+        },
+        {
+          "functionName": "",
+          "ranges": [{ "startOffset": 13, "endOffset": 4843, "count": 1 }],
+          "isBlockCoverage": true
+        },
+        {
+          "functionName": "callback",
+          "ranges": [{ "startOffset": 815, "endOffset": 840, "count": 0 }],
+          "isBlockCoverage": false
+        },
+        {
+          "functionName": "",
+          "ranges": [{ "startOffset": 897, "endOffset": 1702, "count": 1 }],
+          "isBlockCoverage": true
+        },
+        {
+          "functionName": "",
+          "ranges": [{ "startOffset": 1732, "endOffset": 2557, "count": 1 }],
+          "isBlockCoverage": true
+        }
+      ]
+    },
+    {
+      "scriptId": "1447",
+      "url": "file:///C:/Users/Tatiana/Documents/Stage1/Stage3/React-stage3/react/class-components/src/components/Buttons/PaginationButton.tsx",
+      "functions": [
+        {
+          "functionName": "",
+          "ranges": [{ "startOffset": 0, "endOffset": 3247, "count": 1 }],
+          "isBlockCoverage": true
+        },
+        {
+          "functionName": "",
+          "ranges": [{ "startOffset": 13, "endOffset": 3247, "count": 1 }],
+          "isBlockCoverage": true
+        },
+        {
+          "functionName": "PaginationButton",
+          "ranges": [
+            { "startOffset": 449, "endOffset": 1279, "count": 4 },
+            { "startOffset": 640, "endOffset": 670, "count": 0 }
+          ],
+          "isBlockCoverage": true
+        },
+        {
+          "functionName": "",
+          "ranges": [
+            { "startOffset": 705, "endOffset": 895, "count": 2 },
+            { "startOffset": 843, "endOffset": 891, "count": 0 }
+          ],
+          "isBlockCoverage": true
+        }
+      ]
+    }
+  ]
+}
