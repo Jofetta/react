@@ -1,12 +1,16 @@
 import { BrowserRouter } from 'react-router-dom';
 import { render, screen } from '@testing-library/react';
 import MainPage from './MainPage';
+import { Provider } from 'react-redux';
+import { store } from '../../utils/store';
 
 test('shoould have a placeholder', () => {
   render(
-    <BrowserRouter>
-      <MainPage />
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <MainPage />
+      </BrowserRouter>
+    </Provider>
   );
 
   const input = screen.getByPlaceholderText('Enter pokemon name');
@@ -15,9 +19,11 @@ test('shoould have a placeholder', () => {
 
 test('shoould have a search button', () => {
   render(
-    <BrowserRouter>
-      <MainPage />
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <MainPage />
+      </BrowserRouter>
+    </Provider>
   );
 
   const searchButton = screen.getByText('Search');
@@ -26,21 +32,25 @@ test('shoould have a search button', () => {
 
 test('shoould have an error button', () => {
   render(
-    <BrowserRouter>
-      <MainPage />
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <MainPage />
+      </BrowserRouter>
+    </Provider>
   );
 
   const errorButton = screen.getByText('Throw an Error');
   expect(errorButton).toBeInTheDocument();
 });
 
-test('should have a loader', () => {
+test('should have a loader', async () => {
   render(
-    <BrowserRouter>
-      <MainPage />
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <MainPage />
+      </BrowserRouter>
+    </Provider>
   );
-  const loader = screen.getByText('Loading ...');
+  const loader = await screen.findByText('Loading ...');
   expect(loader).toBeInTheDocument();
 });

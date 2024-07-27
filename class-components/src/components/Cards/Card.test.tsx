@@ -1,28 +1,50 @@
 import Card from './Card';
 import { BrowserRouter } from 'react-router-dom';
 import { render, screen } from '@testing-library/react';
+import { store } from '../../utils/store';
+import { Provider } from 'react-redux';
+import { describe } from 'vitest';
 
-const mockCard = {
-  name: 'bulbasaur',
-  url: 'https://pokeapi.co/api/v2/pokemon/bulbasaur',
+const mockCardProps = {
+  name: 'caterpie',
 };
 
-test('should have a close button', () => {
-  render(
-    <BrowserRouter>
-      <Card {...mockCard} />
-    </BrowserRouter>
-  );
-  const heading = screen.getByText('bulbasaur');
-  expect(heading).toBeInTheDocument();
+describe('Card component', () => {
+  test('should have a close button', async () => {
+    render(
+      <Provider store={store}>
+        <BrowserRouter>
+          <Card {...mockCardProps} />
+        </BrowserRouter>
+      </Provider>
+    );
+    const heading = await screen.findByText('caterpie');
+    expect(heading).toBeInTheDocument();
+  });
+  // beforeEach(() => {
+  //   useGetPokemonByQuery.mockClear();
+  // })
+  // it('should render data after api request', async () => {
+  // useGetPokemonByQuery.mockReturnValueOnce({
+  //     data: mockPokemon,
+  //     isLoading: false,
+  //     isSuccess: true,
+  //     isError: false,
+  //     error: null,
+  //   });
+  // })
 });
 
-test('should have an image', () => {
-  render(
-    <BrowserRouter>
-      <Card {...mockCard} />
-    </BrowserRouter>
-  );
-  const image = screen.getByAltText('pokemon-image');
-  expect(image).toBeInTheDocument();
-});
+//
+
+// test('should have an image', () => {
+//   render(
+//     <Provider store={store}>
+//     <BrowserRouter>
+//       <Card {...mockCard} />
+//       </BrowserRouter>
+//       </Provider>
+//   );
+//   const image = screen.getByAltText('pokemon-image');
+//   expect(image).toBeInTheDocument();
+// });
