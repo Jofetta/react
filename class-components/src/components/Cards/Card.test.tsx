@@ -1,7 +1,7 @@
 import Card from './Card';
 import { BrowserRouter } from 'react-router-dom';
 import { render, screen } from '@testing-library/react';
-import { store } from '../../utils/store';
+import { store } from '../../store/store';
 import { Provider } from 'react-redux';
 import { describe } from 'vitest';
 

@@ -7,7 +7,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import ErrorBoundary from './components/ErrorJHandling/ErrorBoundary';
 import { ThemeProvider } from './context/ThemeContext';
 import { Provider } from 'react-redux';
-import { store } from './utils/store';
+import { store } from './store/store';
 
 function App() {
   return (

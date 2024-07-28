@@ -1,9 +1,13 @@
 import { useContext, useEffect, useState } from 'react';
-import { pokeAPI } from '../../utils/api';
+import { pokeAPI } from '../../store/api';
 import { useNavigate } from 'react-router-dom';
 import { ThemeContext } from '../../context/ThemeContext';
 import Loader from '../Loader';
 import { isPokemon } from '../../types/types';
+import SelectButton from '../Buttons/SelectButton';
+import { useDispatch } from 'react-redux';
+// import { RootState } from '../../utils/store';
+import { setItem } from '../../store/selectedItemsSlice';
 
 const { useGetPokemonByQuery } = pokeAPI;
 export type CardProps = {
@@ -15,6 +19,7 @@ export default function Card(props: CardProps) {
   const navigate = useNavigate();
   const darkTheme = useContext(ThemeContext);
   const { data, error, isLoading } = useGetPokemonByQuery(props.name);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (data) {
@@ -25,6 +30,11 @@ export default function Card(props: CardProps) {
 
   function handleClick() {
     navigate(`/pokemon/${props.name}`);
+  }
+
+  function selectItem() {
+    const pokemonData = isPokemon(data);
+    if (pokemonData) dispatch(setItem(pokemonData));
   }
 
   return (
@@ -40,6 +50,7 @@ export default function Card(props: CardProps) {
         >
           <h1>{props.name}</h1>
           {imageURL && <img src={imageURL} alt="pokemon-image" />}
+          <SelectButton name={props.name} callback={() => selectItem()} />
         </div>
       )}
     </>

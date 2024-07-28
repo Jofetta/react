@@ -12,7 +12,7 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import { useSearchParams } from 'react-router-dom';
 import { ThemeButton } from '../../components/Buttons/ThemeButton';
 import { ThemeContext } from '../../context/ThemeContext';
-import { pokeAPI } from '../../utils/api';
+import { pokeAPI } from '../../store/api';
 import { AllPokemons, Pokemon, isAllPokemons } from '../../types/types';
 
 const { useGetPokemonByQuery } = pokeAPI;

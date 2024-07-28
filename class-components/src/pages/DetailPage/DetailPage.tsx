@@ -2,7 +2,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import Loader from '../../components/Loader';
 import { ThemeContext } from '../../context/ThemeContext';
-import { pokeAPI } from '../../utils/api';
+import { pokeAPI } from '../../store/api';
 import { isPokemon, Pokemon } from '../../types/types';
 
 const { useGetPokemonByQuery } = pokeAPI;

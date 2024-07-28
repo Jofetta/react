@@ -2,7 +2,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { render, screen } from '@testing-library/react';
 import MainPage from './MainPage';
 import { Provider } from 'react-redux';
-import { store } from '../../utils/store';
+import { store } from '../../store/store';
 
 test('shoould have a placeholder', () => {
   render(
