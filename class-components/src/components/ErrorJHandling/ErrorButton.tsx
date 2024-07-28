@@ -11,10 +11,7 @@ export default function ErrorButton() {
     throw new Error('User generated an error');
   } else {
     return (
-      <button
-        className="search-button error-button"
-        onClick={() => throwError()}
-      >
+      <button className="button error-button" onClick={() => throwError()}>
         Throw an Error
       </button>
     );

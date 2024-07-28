@@ -22,5 +22,9 @@ export default function DownloadButton() {
     document.body.removeChild(link);
   }
 
-  return <button onClick={() => downloadCSV()}>Download All</button>;
+  return (
+    <button className="button" onClick={() => downloadCSV()}>
+      Download All
+    </button>
+  );
 }

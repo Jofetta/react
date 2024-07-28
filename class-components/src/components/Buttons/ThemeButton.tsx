@@ -8,12 +8,12 @@ export function ThemeButton() {
     <>
       <span className="theme-button-name"> Dark Theme</span>
       <div
-        data-testId="theme-button"
+        data-testid="theme-button"
         className="theme-button-container"
         onClick={toggleTheme.updater}
       >
         <div
-          data-testId="theme-button-dark"
+          data-testid="theme-button-dark"
           className={darkTheme.darkTheme ? 'theme-button-dark' : 'theme-button'}
         ></div>
       </div>

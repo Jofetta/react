@@ -12,11 +12,10 @@ export default function SelectButton(props: {
   return (
     <>
       <div
-        className="select-button"
+        className="button select-button"
         onClick={(e) => {
           e.stopPropagation();
           props.callback();
-          console.log(selectedItems);
         }}
       >
         <input

@@ -76,11 +76,9 @@ export default function MainPage() {
     }
     setApiData(data);
     setCurrentPage(1);
-    console.log(apiData);
   }
 
   async function changePage(forward: boolean) {
-    console.log(apiData);
     if (forward) {
       navigate(`/?page=${currentPage + 1}`);
       setCurrentPage(currentPage + 1);
@@ -104,7 +102,7 @@ export default function MainPage() {
 
   return (
     <main className={darkTheme.darkTheme ? 'main dark' : 'main'}>
-      <section>
+      <section className="buttons-container">
         <Input {...inputProps} />
         <SearchButton {...props} />
         <ErrorButton />

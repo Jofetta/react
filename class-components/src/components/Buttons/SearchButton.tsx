@@ -3,7 +3,7 @@ export type ButtonProps = {
 };
 function SearchButton(props: ButtonProps) {
   return (
-    <button className="search-button" onClick={props.callback}>
+    <button className="button search-button" onClick={props.callback}>
       Search
     </button>
   );

@@ -1,8 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
 @import './components/Buttons/Buttons.scss';
 @import './components/FlyOut/FlyOut.scss';
 
 * {
   box-sizing: border-box;
+  font-family: 'Raleway', sans-serif;
 }
 
 body {
@@ -24,7 +26,7 @@ body {
   border: 1px solid black;
   border-radius: 5px;
   margin: 10px;
-  min-width: 150px;
+  min-width: 210px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -38,11 +40,7 @@ body {
   font-size: larger;
   margin: 20px;
   border-radius: 5px;
-}
-
-.search-button {
-  font-size: larger;
-  border-radius: 5px;
+  height: 35px;
 }
 
 .fallback {
@@ -86,4 +84,13 @@ body {
 .dark {
   background-color: black;
   color: white;
+}
+
+.buttons-container {
+  display: flex;
+  align-items: center;
+}
+
+label {
+  margin-left: 5px;
 }
