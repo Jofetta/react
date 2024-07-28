@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import UnselectButton from '../Buttons/UnselectButton';
+import DownloadButton from '../Buttons/DownloadButton';
 
 export default function Flyout() {
   const selectedItems = useSelector(
@@ -12,6 +13,7 @@ export default function Flyout() {
       <div className={selectedItems.length > 0 ? 'fly-out' : 'fly-out hidden'}>
         <h1>{`You have selected ${selectedItems.length} pokemon${selectedItems.length > 1 ? 's' : ''}`}</h1>
         <UnselectButton />
+        <DownloadButton />
       </div>
     </>
   );

@@ -9,7 +9,9 @@ export const store = configureStore({
     [pokeAPI.reducerPath]: pokeAPI.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(pokeAPI.middleware),
+    getDefaultMiddleware({ serializableCheck: false }).concat(
+      pokeAPI.middleware
+    ),
 });
 
 setupListeners(store.dispatch);

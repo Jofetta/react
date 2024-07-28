@@ -16,6 +16,7 @@ export default function SelectButton(props: {
         onClick={(e) => {
           e.stopPropagation();
           props.callback();
+          console.log(selectedItems);
         }}
       >
         <input
