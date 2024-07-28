@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 .cards-container {
   display: flex;
   flex-wrap: wrap;
@@ -34,4 +38,52 @@
 .error-button {
   color: red;
   margin-left: 20px;
+}
+
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.disabled {
+  pointer-events: none;
+}
+
+.pagination-forward,
+.pagination-back {
+  cursor: pointer;
+  border-radius: 5px;
+  border: 1px solid black;
+  padding: 1px 5px;
+}
+
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100dvw;
+  height: 100dvh;
+  z-index: 1;
+}
+
+.container {
+  display: flex;
+}
+
+.details {
+  position: relative;
+  width: 48%;
+  height: 80dvh;
+  flex-shrink: 0;
+  z-index: 2;
+  border: 1px solid black;
+  margin: 2%;
+  padding: 5%;
+}
+
+.close-button {
+  position: absolute;
+  right: 20px;
+  top: 20px;
 }
