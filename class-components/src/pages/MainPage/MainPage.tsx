@@ -1,26 +1,29 @@
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, useContext, useEffect, useState } from 'react';
 import Input, { InputProps } from '../../components/Input';
-import SearchButton, { ButtonProps } from '../../components/SearchButton';
-import fetchData, { defaultURL } from '../../utils/api';
+import SearchButton, {
+  ButtonProps,
+} from '../../components/Buttons/SearchButton';
 import CardsContainer from '../../components/Cards/CardsContainer';
 import ErrorBoundary from '../../components/ErrorJHandling/ErrorBoundary';
 import ErrorButton from '../../components/ErrorJHandling/ErrorButton';
 import useLocalStorage from '../../utils/localStorage';
-import PaginationButton from '../../components/PaginationButton';
+import PaginationButton from '../../components/Buttons/PaginationButton';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { useSearchParams } from 'react-router-dom';
+import { ThemeButton } from '../../components/Buttons/ThemeButton';
+import { ThemeContext } from '../../context/ThemeContext';
+import { pokeAPI } from '../../store/api';
+import { AllPokemons, Pokemon, isAllPokemons } from '../../types/types';
+import Flyout from '../../components/FlyOut/FlyOut';
 
-export type ApiData = {
-  query?: string;
-  results?: [];
-  next?: string;
-  previous?: string;
-};
+const { useGetPokemonByQuery } = pokeAPI;
+
 export default function MainPage() {
   const { query, setQuery } = useLocalStorage('pokemonQuery', '');
   const [tempQuery, setTempQuery] = useState('');
-  const [apiData, setApiData] = useState<ApiData>({});
-  const [isLoading, setLoading] = useState(true);
+  const [apiQuery, setApiQuery] = useState('');
+  const { data, isLoading } = useGetPokemonByQuery(apiQuery);
+  const [apiData, setApiData] = useState<AllPokemons | Pokemon | undefined>();
   const [searchParams, setSearchParams] = useSearchParams({
     page: '1',
     search: '',
@@ -29,19 +32,17 @@ export default function MainPage() {
     searchParams.get('page') ? Number(searchParams.get('page')) : 1
   );
   const navigate = useNavigate();
+  const darkTheme = useContext(ThemeContext);
 
   function updateState(searchString: string) {
     setTempQuery(searchString);
   }
 
   async function fetchPageData(page: number) {
-    setLoading(true);
     const pokemonLimit = 20;
     const offset = (page - 1) * pokemonLimit;
-    const url = `https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=${pokemonLimit}`;
-    const data = await fetchData(url);
-    if (data) setApiData(data);
-    setLoading(false);
+    const urlEndpoint = `?offset=${offset}&limit=${pokemonLimit}`;
+    setApiQuery(urlEndpoint);
   }
 
   useEffect(() => {
@@ -50,42 +51,34 @@ export default function MainPage() {
       if (searchString) {
         setQuery(searchString);
         setTempQuery(searchString);
-        const data = await fetchData(defaultURL + searchString);
+        setApiQuery(searchString);
         setApiData(data);
-        setLoading(false);
       } else if (searchParams.get('page')) {
         fetchPageData(currentPage);
-      } else if (query) {
-        const data = await fetchData(defaultURL + query);
         setApiData(data);
-        setLoading(false);
       } else {
-        fetchPageData(1);
+        setApiData(data);
       }
     }
     onMount();
-  }, [query, currentPage, searchParams, setQuery]);
+  }, [query, currentPage, searchParams, setQuery, data]);
 
   async function handleClick() {
-    setLoading(true);
     if (tempQuery) {
       setSearchParams({ search: tempQuery });
       setQuery(tempQuery);
-      const data = await fetchData(defaultURL + tempQuery);
-      setApiData(data);
+      setApiQuery(tempQuery);
     } else {
       setSearchParams({ page: '1', search: '' });
       setQuery('');
       fetchPageData(currentPage);
       navigate('/?page=1');
     }
+    setApiData(data);
     setCurrentPage(1);
-    setLoading(false);
-    console.log(apiData);
   }
 
   async function changePage(forward: boolean) {
-    console.log(apiData);
     if (forward) {
       navigate(`/?page=${currentPage + 1}`);
       setCurrentPage(currentPage + 1);
@@ -108,11 +101,12 @@ export default function MainPage() {
   };
 
   return (
-    <main>
-      <section>
+    <main className={darkTheme.darkTheme ? 'main dark' : 'main'}>
+      <section className="buttons-container">
         <Input {...inputProps} />
         <SearchButton {...props} />
         <ErrorButton />
+        <ThemeButton />
       </section>
       <ErrorBoundary fallback={<div>Something went wrong</div>}>
         <section>
@@ -127,7 +121,7 @@ export default function MainPage() {
                 />
                 <Outlet />
               </div>
-              {apiData.results && (
+              {isAllPokemons(apiData)?.results && (
                 <div className="pagination-container">
                   <PaginationButton
                     classList="pagination-back"
@@ -145,6 +139,7 @@ export default function MainPage() {
             </div>
           )}
           {apiData === undefined && <div>No results</div>}
+          <Flyout />
         </section>
       </ErrorBoundary>
     </main>

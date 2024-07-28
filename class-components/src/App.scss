@@ -1,5 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+@import './components/Buttons/Buttons.scss';
+@import './components/FlyOut/FlyOut.scss';
+
 * {
   box-sizing: border-box;
+  font-family: 'Raleway', sans-serif;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+}
+
+.main {
+  min-height: 100dvh;
 }
 
 .cards-container {
@@ -12,22 +26,21 @@
   border: 1px solid black;
   border-radius: 5px;
   margin: 10px;
-  min-width: 150px;
+  min-width: 210px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  &.dark {
+    border: 1px solid white;
+  }
 }
 
 .input {
   font-size: larger;
   margin: 20px;
   border-radius: 5px;
-}
-
-.search-button {
-  font-size: larger;
-  border-radius: 5px;
+  height: 35px;
 }
 
 .fallback {
@@ -35,27 +48,10 @@
   color: red;
 }
 
-.error-button {
-  color: red;
-  margin-left: 20px;
-}
-
 .pagination-container {
   display: flex;
   justify-content: center;
   gap: 10px;
-}
-
-.disabled {
-  pointer-events: none;
-}
-
-.pagination-forward,
-.pagination-back {
-  cursor: pointer;
-  border-radius: 5px;
-  border: 1px solid black;
-  padding: 1px 5px;
 }
 
 .background {
@@ -80,10 +76,21 @@
   border: 1px solid black;
   margin: 2%;
   padding: 5%;
+  &.dark {
+    border-color: white;
+  }
 }
 
-.close-button {
-  position: absolute;
-  right: 20px;
-  top: 20px;
+.dark {
+  background-color: black;
+  color: white;
+}
+
+.buttons-container {
+  display: flex;
+  align-items: center;
+}
+
+label {
+  margin-left: 5px;
 }

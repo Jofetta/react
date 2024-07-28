@@ -1,0 +1,138 @@
+.pagination-forward,
+.pagination-back {
+  cursor: pointer;
+  border-radius: 5px;
+  border: 1px solid black;
+  padding: 1px 5px;
+}
+
+.button {
+  min-width: 170px;
+  height: 35px;
+  font-size: larger;
+  border-radius: 5px;
+  margin: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: linear-gradient(
+    to right,
+    #abbaab 0%,
+    #ffffff 51%,
+    #abbaab 100%
+  );
+  background-size: 200% auto;
+  color: black;
+  box-shadow: 0 0 5px #eee;
+  transition: 0.5s;
+
+  &:hover {
+    background-position: right center;
+    text-decoration: none;
+  }
+
+  .dark & {
+    background-image: linear-gradient(
+      to right,
+      #000000 0%,
+      #434343 51%,
+      #000000 100%
+    );
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    box-shadow: 0 0 5px #eee;
+
+    &:hover {
+      background-position: right center;
+      color: #fff;
+      text-decoration: none;
+    }
+  }
+}
+
+.disabled {
+  pointer-events: none;
+}
+
+.error-button {
+  color: red;
+  margin-left: 20px;
+}
+
+.close-button {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+
+.theme-button-container {
+  display: inline-flex;
+  width: 50px;
+  background-color: lightgrey;
+  margin-left: 10px;
+  border-radius: 20px;
+}
+
+.theme-button,
+.theme-button-dark {
+  width: 35px;
+  height: 35px;
+  border-radius: 20px;
+  border: 1px solid white;
+}
+
+.theme-button {
+  background-color: gray;
+}
+
+.theme-button-dark {
+  background-color: black;
+  position: relative;
+  left: 25px;
+}
+
+.theme-button-name {
+  margin-left: 20px;
+}
+
+.pagination-back,
+.pagination-forward,
+.close-button {
+  width: 25px;
+  height: 25px;
+  background-image: linear-gradient(
+    to right,
+    #abbaab 0%,
+    #ffffff 51%,
+    #abbaab 100%
+  );
+  background-size: 200% auto;
+  color: black;
+  box-shadow: 0 0 5px #eee;
+  transition: 0.5s;
+
+  &:hover {
+    background-position: right center;
+    text-decoration: none;
+  }
+
+  .dark & {
+    background-image: linear-gradient(
+      to right,
+      #000000 0%,
+      #434343 51%,
+      #000000 100%
+    );
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    box-shadow: 0 0 5px #eee;
+
+    &:hover {
+      background-position: right center;
+      color: #fff;
+      text-decoration: none;
+    }
+  }
+}

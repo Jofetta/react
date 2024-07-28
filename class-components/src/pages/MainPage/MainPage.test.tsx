@@ -1,12 +1,16 @@
 import { BrowserRouter } from 'react-router-dom';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import MainPage from './MainPage';
+import { Provider } from 'react-redux';
+import { store } from '../../store/store';
 
 test('shoould have a placeholder', () => {
   render(
-    <BrowserRouter>
-      <MainPage />
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <MainPage />
+      </BrowserRouter>
+    </Provider>
   );
 
   const input = screen.getByPlaceholderText('Enter pokemon name');
@@ -15,9 +19,11 @@ test('shoould have a placeholder', () => {
 
 test('shoould have a search button', () => {
   render(
-    <BrowserRouter>
-      <MainPage />
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <MainPage />
+      </BrowserRouter>
+    </Provider>
   );
 
   const searchButton = screen.getByText('Search');
@@ -26,21 +32,80 @@ test('shoould have a search button', () => {
 
 test('shoould have an error button', () => {
   render(
-    <BrowserRouter>
-      <MainPage />
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <MainPage />
+      </BrowserRouter>
+    </Provider>
   );
 
   const errorButton = screen.getByText('Throw an Error');
   expect(errorButton).toBeInTheDocument();
 });
 
-test('should have a loader', () => {
+test('should have a loader', async () => {
   render(
-    <BrowserRouter>
-      <MainPage />
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <MainPage />
+      </BrowserRouter>
+    </Provider>
   );
-  const loader = screen.getByText('Loading ...');
+  const loader = await screen.findByText('Loading ...');
   expect(loader).toBeInTheDocument();
+});
+
+test('should switch to dark theme', async () => {
+  render(
+    <Provider store={store}>
+      <BrowserRouter>
+        <MainPage />
+      </BrowserRouter>
+    </Provider>
+  );
+  const themeButton = await screen.findByTestId('theme-button');
+  const themeButtonDark = await screen.findByTestId('theme-button-dark');
+  fireEvent.click(themeButton);
+  await waitFor(() => {
+    expect(themeButtonDark.classList).toContain('theme-button');
+  });
+});
+
+test('should have flyout component', async () => {
+  render(
+    <Provider store={store}>
+      <BrowserRouter>
+        <MainPage />
+      </BrowserRouter>
+    </Provider>
+  );
+
+  const flyoutHeading = screen.getByText('You have selected 0 pokemon');
+  expect(flyoutHeading).toBeInTheDocument();
+});
+
+test('should have flyout unselect button', async () => {
+  render(
+    <Provider store={store}>
+      <BrowserRouter>
+        <MainPage />
+      </BrowserRouter>
+    </Provider>
+  );
+
+  const flyoutUnselect = screen.getByText('Unselect All');
+  expect(flyoutUnselect).toBeInTheDocument();
+});
+
+test('should have flyout download', async () => {
+  render(
+    <Provider store={store}>
+      <BrowserRouter>
+        <MainPage />
+      </BrowserRouter>
+    </Provider>
+  );
+
+  const flyoutUnselect = screen.getByText('Download All');
+  expect(flyoutUnselect).toBeInTheDocument();
 });
