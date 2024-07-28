@@ -14,6 +14,7 @@ import { ThemeButton } from '../../components/Buttons/ThemeButton';
 import { ThemeContext } from '../../context/ThemeContext';
 import { pokeAPI } from '../../store/api';
 import { AllPokemons, Pokemon, isAllPokemons } from '../../types/types';
+import Flyout from '../../components/FlyOut/FlyOut';
 
 const { useGetPokemonByQuery } = pokeAPI;
 
@@ -140,6 +141,7 @@ export default function MainPage() {
             </div>
           )}
           {apiData === undefined && <div>No results</div>}
+          <Flyout />
         </section>
       </ErrorBoundary>
     </main>

@@ -21,6 +21,7 @@ export default function SelectButton(props: {
         <input
           type="checkbox"
           id={props.name}
+          readOnly
           checked={
             selectedItems.findIndex((item) => item.name === props.name) === -1
               ? false

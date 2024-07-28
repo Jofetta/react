@@ -6,7 +6,6 @@ import Loader from '../Loader';
 import { isPokemon } from '../../types/types';
 import SelectButton from '../Buttons/SelectButton';
 import { useDispatch } from 'react-redux';
-// import { RootState } from '../../utils/store';
 import { setItem } from '../../store/selectedItemsSlice';
 
 const { useGetPokemonByQuery } = pokeAPI;
@@ -43,7 +42,7 @@ export default function Card(props: CardProps) {
         <>Something went wrong</>
       ) : isLoading ? (
         <Loader />
-      ) : (
+      ) : data ? (
         <div
           className={darkTheme.darkTheme ? 'card dark' : 'card'}
           onClick={handleClick}
@@ -52,7 +51,7 @@ export default function Card(props: CardProps) {
           {imageURL && <img src={imageURL} alt="pokemon-image" />}
           <SelectButton name={props.name} callback={() => selectItem()} />
         </div>
-      )}
+      ) : null}
     </>
   );
 }

@@ -1,0 +1,16 @@
+.fly-out {
+  position: fixed;
+  z-index: 1;
+  bottom: 10dvh;
+  left: 20px;
+  background-color: white;
+  padding: 20px;
+  border: 1px solid black;
+  border-radius: 10px;
+  transition: all 0.3s ease-in-out;
+}
+
+.hidden {
+  left: -100%;
+  transition: all 0.3s ease-in-out;
+}
