@@ -1,4 +1,4 @@
-import Card, { CardProps } from './Card';
+import Card from './Card';
 import Loader from '../Loader';
 import { useContext } from 'react';
 import { ThemeContext } from '../../context/ThemeContext';
@@ -8,6 +8,7 @@ export type CardContainerProps = {
   query: string;
   apiData: AllPokemons | Pokemon | undefined;
   isLoading: boolean;
+  openDetail: () => void;
 };
 export default function CardsContainer(props: CardContainerProps) {
   const darkTheme = useContext(ThemeContext);
@@ -25,12 +26,18 @@ export default function CardsContainer(props: CardContainerProps) {
         }
       >
         {allPokemons &&
-          allPokemons.results?.map((el: CardProps) => {
-            return <Card key={el.name} {...el} />;
+          allPokemons.results?.map((el) => {
+            return (
+              <Card
+                key={el.name}
+                name={el.name}
+                openDetail={props.openDetail}
+              />
+            );
           })}
       </div>
     );
   } else {
-    return <Card name={props.query} />;
+    return <Card name={props.query} openDetail={props.openDetail} />;
   }
 }

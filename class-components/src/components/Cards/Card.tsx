@@ -1,24 +1,25 @@
 import { useContext, useEffect, useState } from 'react';
 import { pokeAPI } from '../../store/api';
-import { useNavigate } from 'react-router-dom';
 import { ThemeContext } from '../../context/ThemeContext';
 import Loader from '../Loader';
 import { isPokemon } from '../../types/types';
 import SelectButton from '../Buttons/SelectButton';
 import { useDispatch } from 'react-redux';
 import { setItem } from '../../store/selectedItemsSlice';
+import { useRouter } from 'next/router';
 
 const { useGetPokemonByQuery } = pokeAPI;
 export type CardProps = {
   name: string;
+  openDetail: () => void;
 };
 
 export default function Card(props: CardProps) {
   const [imageURL, setImageURL] = useState('');
-  const navigate = useNavigate();
   const darkTheme = useContext(ThemeContext);
   const { data, error, isLoading } = useGetPokemonByQuery(props.name);
   const dispatch = useDispatch();
+  const router = useRouter();
 
   useEffect(() => {
     if (data) {
@@ -28,7 +29,8 @@ export default function Card(props: CardProps) {
   }, [data]);
 
   function handleClick() {
-    navigate(`/pokemon/${props.name}`);
+    props.openDetail();
+    router.push(`/?pokemon=${props.name}`, undefined, { shallow: true });
   }
 
   function selectItem() {

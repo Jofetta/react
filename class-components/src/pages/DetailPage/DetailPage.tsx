@@ -1,31 +1,30 @@
-import { useParams, useNavigate } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import Loader from '../../components/Loader';
 import { ThemeContext } from '../../context/ThemeContext';
 import { pokeAPI } from '../../store/api';
 import { isPokemon, Pokemon } from '../../types/types';
+import { useRouter } from 'next/router';
 
 const { useGetPokemonByQuery } = pokeAPI;
 
-export default function DetailPage() {
-  const { id } = useParams();
-  const navigate = useNavigate();
+export default function DetailPage(props: { closeDetail: () => void }) {
+  const router = useRouter();
+  const [id, setId] = useState('');
   const darkTheme = useContext(ThemeContext);
-  const { data, error, isLoading } = useGetPokemonByQuery(id ? id : '');
+  const { data, error, isLoading } = useGetPokemonByQuery(id || '');
   const [pokemonData, setPokemonData] = useState<Pokemon>();
 
   useEffect(() => {
+    if (typeof router.query.pokemon === 'string') {
+      setId(router.query.pokemon);
+    }
     if (data) setPokemonData(isPokemon(data));
-  }, [data]);
-
-  function closeDetails() {
-    navigate('/');
-  }
+  }, [data, id, router.query.pokemon]);
 
   return (
     <>
       <div className={darkTheme.darkTheme ? 'details dark' : 'details'}>
-        <button className="close-button" onClick={closeDetails}>
+        <button className="close-button" onClick={props.closeDetail}>
           X
         </button>
         {error ? (
@@ -43,7 +42,7 @@ export default function DetailPage() {
           </div>
         ) : null}
       </div>
-      <div className="background" onClick={closeDetails}></div>
+      <div className="background" onClick={props.closeDetail}></div>
     </>
   );
 }

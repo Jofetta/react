@@ -58,12 +58,14 @@ const mockCardContainer1 = {
     | Pokemon
     | undefined,
   isLoading: false,
+  openDetail: () => console.log('test'),
 };
 
 const mockCardContainer2 = {
   query: 'caterpie',
   apiData: mockPokemon as AllPokemons | Pokemon | undefined,
   isLoading: false,
+  openDetail: () => console.log('test'),
 };
 
 test('should have pokemon cards', async () => {

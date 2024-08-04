@@ -1,5 +1,4 @@
 import Card from './Card';
-import { BrowserRouter } from 'react-router-dom';
 import { render, screen } from '@testing-library/react';
 import { store } from '../../store/store';
 import { Provider } from 'react-redux';
@@ -7,44 +6,19 @@ import { describe } from 'vitest';
 
 const mockCardProps = {
   name: 'caterpie',
+  openDetail: () => {
+    console.log('test');
+  },
 };
 
 describe('Card component', () => {
   test('should have a close button', async () => {
     render(
       <Provider store={store}>
-        <BrowserRouter>
-          <Card {...mockCardProps} />
-        </BrowserRouter>
+        <Card {...mockCardProps} />
       </Provider>
     );
     const heading = await screen.findByText('caterpie');
     expect(heading).toBeInTheDocument();
   });
-  // beforeEach(() => {
-  //   useGetPokemonByQuery.mockClear();
-  // })
-  // it('should render data after api request', async () => {
-  // useGetPokemonByQuery.mockReturnValueOnce({
-  //     data: mockPokemon,
-  //     isLoading: false,
-  //     isSuccess: true,
-  //     isError: false,
-  //     error: null,
-  //   });
-  // })
 });
-
-//
-
-// test('should have an image', () => {
-//   render(
-//     <Provider store={store}>
-//     <BrowserRouter>
-//       <Card {...mockCard} />
-//       </BrowserRouter>
-//       </Provider>
-//   );
-//   const image = screen.getByAltText('pokemon-image');
-//   expect(image).toBeInTheDocument();
-// });
