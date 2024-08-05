@@ -1,4 +1,3 @@
-import { BrowserRouter } from 'react-router-dom';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import MainPage from './MainPage';
 import { Provider } from 'react-redux';
@@ -7,9 +6,7 @@ import { store } from '../../store/store';
 test('shoould have a placeholder', () => {
   render(
     <Provider store={store}>
-      <BrowserRouter>
-        <MainPage />
-      </BrowserRouter>
+      <MainPage />
     </Provider>
   );
 
@@ -20,9 +17,7 @@ test('shoould have a placeholder', () => {
 test('shoould have a search button', () => {
   render(
     <Provider store={store}>
-      <BrowserRouter>
-        <MainPage />
-      </BrowserRouter>
+      <MainPage />
     </Provider>
   );
 
@@ -33,9 +28,7 @@ test('shoould have a search button', () => {
 test('shoould have an error button', () => {
   render(
     <Provider store={store}>
-      <BrowserRouter>
-        <MainPage />
-      </BrowserRouter>
+      <MainPage />
     </Provider>
   );
 
@@ -46,9 +39,7 @@ test('shoould have an error button', () => {
 test('should have a loader', async () => {
   render(
     <Provider store={store}>
-      <BrowserRouter>
-        <MainPage />
-      </BrowserRouter>
+      <MainPage />
     </Provider>
   );
   const loader = await screen.findByText('Loading ...');
@@ -58,9 +49,7 @@ test('should have a loader', async () => {
 test('should switch to dark theme', async () => {
   render(
     <Provider store={store}>
-      <BrowserRouter>
-        <MainPage />
-      </BrowserRouter>
+      <MainPage />
     </Provider>
   );
   const themeButton = await screen.findByTestId('theme-button');
@@ -74,9 +63,7 @@ test('should switch to dark theme', async () => {
 test('should have flyout component', async () => {
   render(
     <Provider store={store}>
-      <BrowserRouter>
-        <MainPage />
-      </BrowserRouter>
+      <MainPage />
     </Provider>
   );
 
@@ -87,9 +74,7 @@ test('should have flyout component', async () => {
 test('should have flyout unselect button', async () => {
   render(
     <Provider store={store}>
-      <BrowserRouter>
-        <MainPage />
-      </BrowserRouter>
+      <MainPage />
     </Provider>
   );
 
@@ -100,9 +85,7 @@ test('should have flyout unselect button', async () => {
 test('should have flyout download', async () => {
   render(
     <Provider store={store}>
-      <BrowserRouter>
-        <MainPage />
-      </BrowserRouter>
+      <MainPage />
     </Provider>
   );
 

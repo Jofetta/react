@@ -1,4 +1,4 @@
-import NotFoundPage from './NotFoundPage';
+import NotFoundPage from '../404';
 import { BrowserRouter } from 'react-router-dom';
 import { render, screen } from '@testing-library/react';
 
@@ -28,6 +28,6 @@ test('should have a link to the home page', () => {
       <NotFoundPage />
     </BrowserRouter>
   );
-  const linkHome = screen.getByText('Go to home page');
+  const linkHome = screen.getByText('Go to Home Page');
   expect(linkHome).toBeInTheDocument();
 });
