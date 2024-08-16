@@ -1,0 +1,2 @@
+cd forms
+npx prettier --check . && npm run lint
