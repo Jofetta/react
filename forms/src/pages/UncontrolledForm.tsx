@@ -1,5 +1,7 @@
 export default function UncontrolledForm() {
-  return <>
-    <h1>Uncontrolled Approach Form</h1>
-  </>
+  return (
+    <>
+      <h1>Uncontrolled Approach Form</h1>
+    </>
+  );
 }
