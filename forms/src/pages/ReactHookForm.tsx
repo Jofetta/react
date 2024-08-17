@@ -1,24 +1,24 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import { userSchema } from "../utils/validation";
+import { saveData } from "../store/ReactHookFormSlice";
 
-type FormFields = {
-  name: string;
-  age: number;
-  email: string;
-  password: string;
-  password2: string;
-  gender: "male" | "female";
-  acceptTC: boolean;
-  country: string;
-};
+import type { FormFields } from "../types/formTypes";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export default function ReactHookForm() {
   const { register, handleSubmit } = useForm<FormFields>();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const onSubmit: SubmitHandler<FormFields> = async (data) => {
     console.log(data);
     const isValid = await userSchema.isValid(data);
     console.log(isValid);
+    if (isValid) {
+      dispatch(saveData(data));
+      navigate("/");
+    }
   };
 
   return (
