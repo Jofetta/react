@@ -1,4 +1,5 @@
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { userSchema } from "../utils/validation";
 
 type FormFields = {
   name: string;
@@ -6,17 +7,24 @@ type FormFields = {
   email: string;
   password: string;
   password2: string;
-  gender: string;
+  gender: "male" | "female";
   acceptTC: boolean;
   country: string;
 };
 
 export default function ReactHookForm() {
-  const { register } = useForm<FormFields>();
+  const { register, handleSubmit } = useForm<FormFields>();
+
+  const onSubmit: SubmitHandler<FormFields> = async (data) => {
+    console.log(data);
+    const isValid = await userSchema.isValid(data);
+    console.log(isValid);
+  };
+
   return (
     <>
       <h1 className="heading">React Hook Form</h1>
-      <form className="form">
+      <form className="form" onSubmit={handleSubmit(onSubmit)}>
         <div className="form-item">
           <label htmlFor="name" className="label">
             Name
@@ -108,6 +116,7 @@ export default function ReactHookForm() {
           </label>
           <input {...register("acceptTC")} type="checkbox" id="acceptTC" />
         </div>
+        <button type="submit">Submit</button>
       </form>
     </>
   );
