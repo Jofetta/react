@@ -1,0 +1,71 @@
+import { useSelector } from "react-redux";
+import { FormFields } from "../types/formTypes";
+
+import { Link } from "react-router-dom";
+import { RootState } from "../store/store";
+
+export default function MainPage() {
+  const uncontrolledFormData: FormFields = useSelector(
+    (state: RootState) => state.uncontrolledComponent,
+  );
+  const reactHookFormData: FormFields = useSelector(
+    (state: RootState) => state.reactHook,
+  );
+
+  return (
+    <>
+      <h1 className="heading">Main Page</h1>
+      <nav className="nav-container">
+        <Link className="nav-link" to={"/uncontrolled"}>
+          Uncontrolled Components Form
+        </Link>
+        <Link className="nav-link" to={"/react-hook"}>
+          React Hook Form
+        </Link>
+      </nav>
+      <div className="form-data-container">
+        {uncontrolledFormData.name && (
+          <div className="data-block">
+            <h3> Uncontrolled Components Form Data</h3>
+            <p>Name: {uncontrolledFormData.name}</p>
+            <p>Age: {uncontrolledFormData.age}</p>
+            <p>Email: {uncontrolledFormData.email}</p>
+            <p>Gender: {uncontrolledFormData.gender}</p>
+            <p>Country: {uncontrolledFormData.country}</p>
+            <p>
+              Terms&Conditions:{" "}
+              {uncontrolledFormData.acceptTC ? "Accepted" : "No"}
+            </p>
+            {uncontrolledFormData.image && (
+              <img
+                className="image"
+                src={uncontrolledFormData.image}
+                alt="Image"
+              />
+            )}
+          </div>
+        )}
+        {reactHookFormData.name && (
+          <div className="data-block">
+            <h3> React Hook Form Data</h3>
+            <p>Name: {reactHookFormData.name}</p>
+            <p>Age: {reactHookFormData.age}</p>
+            <p>Email: {reactHookFormData.email}</p>
+            <p>Gender: {reactHookFormData.gender}</p>
+            <p>Country: {reactHookFormData.country}</p>
+            <p>
+              Terms&Conditions: {reactHookFormData.acceptTC ? "Accepted" : "No"}
+            </p>
+            {reactHookFormData.image && (
+              <img
+                className="image"
+                src={reactHookFormData.image}
+                alt="Image"
+              />
+            )}
+          </div>
+        )}
+      </div>
+    </>
+  );
+}
