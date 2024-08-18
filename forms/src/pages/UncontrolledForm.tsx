@@ -1,10 +1,11 @@
 import { useRef } from "react";
 import { userSchema } from "../utils/validation";
 import { saveData } from "../store/UncontrolledComponentsSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { ValidationError } from "yup";
 import { FormFields, FormData } from "../types/formTypes";
+import { RootState } from "../store/store";
 
 export default function UncontrolledForm() {
   const nameInput = useRef<HTMLInputElement>(null);
@@ -16,6 +17,8 @@ export default function UncontrolledForm() {
   const genderFemaleInput = useRef<HTMLInputElement>(null);
   const acceptTCInput = useRef<HTMLInputElement>(null);
   const imageInput = useRef<HTMLInputElement>(null);
+  const countryInput = useRef<HTMLInputElement>(null);
+
   const nameError = useRef<HTMLDivElement | null>(null);
   const ageError = useRef<HTMLDivElement | null>(null);
   const emailError = useRef<HTMLDivElement | null>(null);
@@ -24,9 +27,13 @@ export default function UncontrolledForm() {
   const genderError = useRef<HTMLDivElement | null>(null);
   const acceeptTCError = useRef<HTMLDivElement | null>(null);
   const imageError = useRef<HTMLDivElement | null>(null);
+  const countryError = useRef<HTMLDivElement | null>(null);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const countries = useSelector(
+    (state: RootState) => state.countries.countries,
+  );
 
   function clearAllErrors() {
     if (nameError.current) nameError.current.textContent = "";
@@ -37,6 +44,7 @@ export default function UncontrolledForm() {
     if (genderError.current) genderError.current.textContent = "";
     if (acceeptTCError.current) acceeptTCError.current.textContent = "";
     if (imageError.current) imageError.current.textContent = "";
+    if (countryError.current) countryError.current.textContent = "";
   }
 
   async function onSubmit(event: React.FormEvent) {
@@ -54,6 +62,7 @@ export default function UncontrolledForm() {
           : "",
       acceptTC: acceptTCInput.current?.checked || false,
       image: null,
+      country: countryInput.current?.value || "",
     };
     console.log(imageInput.current?.files);
     if (
@@ -100,6 +109,8 @@ export default function UncontrolledForm() {
           acceeptTCError.current.textContent = err.errors[0];
         if (err.path === "image" && imageError.current)
           imageError.current.textContent = err.errors[0];
+        if (err.path === "country" && countryError.current)
+          countryError.current.textContent = err.errors[0];
       }
     }
   }
@@ -205,6 +216,20 @@ export default function UncontrolledForm() {
           </label>
           <input type="file" id="image" ref={imageInput} />
           <div className="error-message" ref={imageError}></div>
+        </div>
+        <div className="form-item">
+          <label className="label" htmlFor="country">
+            Country
+          </label>
+          <input list="countryOptions" id="country" ref={countryInput} />
+          <datalist id="countryOptions">
+            {countries.map((country, index) => (
+              <option key={index} value={country}>
+                {country}
+              </option>
+            ))}
+          </datalist>
+          <div className="error-message" ref={countryError}></div>
         </div>
         <div className="form-item">
           <label htmlFor="acceptTC" className="label">

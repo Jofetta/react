@@ -31,6 +31,11 @@ export default function MainPage() {
             <p>Age: {uncontrolledFormData.age}</p>
             <p>Email: {uncontrolledFormData.email}</p>
             <p>Gender: {uncontrolledFormData.gender}</p>
+            <p>Country: {uncontrolledFormData.country}</p>
+            <p>
+              Terms&Conditions:{" "}
+              {uncontrolledFormData.acceptTC ? "Accepted" : "No"}
+            </p>
             {uncontrolledFormData.image && (
               <img
                 className="image"
@@ -47,6 +52,10 @@ export default function MainPage() {
             <p>Age: {reactHookFormData.age}</p>
             <p>Email: {reactHookFormData.email}</p>
             <p>Gender: {reactHookFormData.gender}</p>
+            <p>Country: {reactHookFormData.country}</p>
+            <p>
+              Terms&Conditions: {reactHookFormData.acceptTC ? "Accepted" : "No"}
+            </p>
             {reactHookFormData.image && (
               <img
                 className="image"

@@ -10,6 +10,8 @@ const initialState: FormFields = {
   password2: "",
   gender: "male",
   acceptTC: false,
+  image: "",
+  country: "",
 };
 
 export const UncontrolledComponentSlice = createSlice({

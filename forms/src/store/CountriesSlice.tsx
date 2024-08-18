@@ -1,36 +1,36 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 type CountryState = {
-  countries: string[]
-}
+  countries: string[];
+};
 
 const initialState: CountryState = {
   countries: [
-    'Australia',
-    'Austria',
-    'Brazil',
-    'Croatia',
-    'China',
-    'Denmark',
-    'Egypt',
-    'France',
-    'Germany',
-    'Hungary',
-    'Japan',
-    'Kenia',
-    'Portugal',
-    'Russia',
+    "Australia",
+    "Austria",
+    "Brazil",
+    "Croatia",
+    "China",
+    "Denmark",
+    "Egypt",
+    "France",
+    "Germany",
+    "Hungary",
+    "Japan",
+    "Kenia",
+    "Portugal",
+    "Russia",
     "Spain",
-    'India',
-    'United States',
-    'United Kingdom'
-  ]
-}
+    "India",
+    "United States",
+    "United Kingdom",
+  ],
+};
 
 const CountrySlice = createSlice({
-  name: 'countries',
+  name: "countries",
   initialState,
-  reducers: {}
-})
+  reducers: {},
+});
 
 export default CountrySlice.reducer;

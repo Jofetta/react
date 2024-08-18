@@ -7,7 +7,7 @@ export const store = configureStore({
   reducer: {
     reactHook: ReactHookReducer,
     uncontrolledComponent: UncontrolledReducer,
-    countries: CountriesSlice
+    countries: CountriesSlice,
   },
 });
 

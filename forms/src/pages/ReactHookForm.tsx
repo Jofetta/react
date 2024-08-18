@@ -17,7 +17,9 @@ export default function ReactHookForm() {
   } = useForm({ resolver: yupResolver(userSchema), mode: "onChange" });
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const countries = useSelector((state: RootState) => state.countries.countries)
+  const countries = useSelector(
+    (state: RootState) => state.countries.countries,
+  );
 
   const onSubmit = async (data: FormData) => {
     const isValid = await userSchema.isValid(data);
@@ -150,11 +152,18 @@ export default function ReactHookForm() {
           <div className="error-message">{errors.image?.message}</div>
         </div>
         <div className="form-item">
-          <label className='label' htmlFor="country">Country</label>
-          <input {...register('country')} list="countryOptions" id="country" />
+          <label className="label" htmlFor="country">
+            Country
+          </label>
+          <input {...register("country")} list="countryOptions" id="country" />
           <datalist id="countryOptions">
-            {countries.map((country, index) => (<option key={index} value={country} >{ country }</option>) )}
+            {countries.map((country, index) => (
+              <option key={index} value={country}>
+                {country}
+              </option>
+            ))}
           </datalist>
+          <div className="error-message">{errors.country?.message}</div>
         </div>
         <div className="form-item">
           <label htmlFor="acceptTC" className="label">

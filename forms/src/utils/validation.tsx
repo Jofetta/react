@@ -62,5 +62,5 @@ export const userSchema = yup.object().shape({
       const fileExtension = fileName.split(".").pop()?.toLowerCase();
       return validExtensions.includes(fileExtension || "");
     }),
-   country: yup.string().required(),
+  country: yup.string().required(),
 });
