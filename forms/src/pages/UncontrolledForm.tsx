@@ -4,6 +4,7 @@ import { saveData } from "../store/UncontrolledComponentsSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { ValidationError } from "yup";
+import { FormFields, FormData } from "../types/formTypes";
 
 export default function UncontrolledForm() {
   const nameInput = useRef<HTMLInputElement>(null);
@@ -14,6 +15,7 @@ export default function UncontrolledForm() {
   const genderMaleInput = useRef<HTMLInputElement>(null);
   const genderFemaleInput = useRef<HTMLInputElement>(null);
   const acceptTCInput = useRef<HTMLInputElement>(null);
+  const imageInput = useRef<HTMLInputElement>(null);
   const nameError = useRef<HTMLDivElement | null>(null);
   const ageError = useRef<HTMLDivElement | null>(null);
   const emailError = useRef<HTMLDivElement | null>(null);
@@ -21,6 +23,7 @@ export default function UncontrolledForm() {
   const password2Error = useRef<HTMLDivElement | null>(null);
   const genderError = useRef<HTMLDivElement | null>(null);
   const acceeptTCError = useRef<HTMLDivElement | null>(null);
+  const imageError = useRef<HTMLDivElement | null>(null);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -33,11 +36,12 @@ export default function UncontrolledForm() {
     if (password2Error.current) password2Error.current.textContent = "";
     if (genderError.current) genderError.current.textContent = "";
     if (acceeptTCError.current) acceeptTCError.current.textContent = "";
+    if (imageError.current) imageError.current.textContent = "";
   }
 
   async function onSubmit(event: React.FormEvent) {
     event.preventDefault();
-    const data = {
+    const data: FormData = {
       name: nameInput.current?.value || "",
       age: Number(ageInput.current?.value) || 0,
       email: emailInput.current?.value || "",
@@ -49,13 +53,34 @@ export default function UncontrolledForm() {
           ? "female"
           : "",
       acceptTC: acceptTCInput.current?.checked || false,
+      image: null,
     };
+    console.log(imageInput.current?.files);
+    if (
+      imageInput.current?.files instanceof FileList &&
+      imageInput.current.files.length !== 0
+    ) {
+      data.image = imageInput.current?.files[0];
+    }
 
     try {
       await userSchema.validate(data);
-      dispatch(saveData(data));
-      console.log(data);
-      navigate("/");
+      const file = data.image;
+
+      if (file instanceof File) {
+        const reader = new FileReader();
+        reader.onload = () => {
+          const encodedImage = reader.result as string;
+          const formDataEncoded: FormFields = {
+            ...data,
+            image: encodedImage,
+          };
+          dispatch(saveData(formDataEncoded));
+          console.log(data);
+          navigate("/");
+        };
+        reader.readAsDataURL(file);
+      }
     } catch (err) {
       if (err instanceof ValidationError) {
         clearAllErrors();
@@ -73,6 +98,8 @@ export default function UncontrolledForm() {
           genderError.current.textContent = err.errors[0];
         if (err.path === "acceptTC" && acceeptTCError.current)
           acceeptTCError.current.textContent = err.errors[0];
+        if (err.path === "image" && imageError.current)
+          imageError.current.textContent = err.errors[0];
       }
     }
   }
@@ -172,6 +199,13 @@ export default function UncontrolledForm() {
           />
           <div className="error-message" ref={genderError}></div>
         </fieldset>
+        <div className="form-item">
+          <label htmlFor="image" className="label">
+            Upload an image
+          </label>
+          <input type="file" id="image" ref={imageInput} />
+          <div className="error-message" ref={imageError}></div>
+        </div>
         <div className="form-item">
           <label htmlFor="acceptTC" className="label">
             Accept Terms and Conditions

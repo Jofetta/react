@@ -10,6 +10,7 @@ const initialState: FormFields = {
   password2: "",
   gender: "male",
   acceptTC: false,
+  image: "",
 };
 
 export const ReactHookFormSlice = createSlice({

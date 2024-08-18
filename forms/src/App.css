@@ -69,3 +69,7 @@
   flex-direction: column;
   gap: 10px;
 }
+
+.image {
+  width: 300px;
+}

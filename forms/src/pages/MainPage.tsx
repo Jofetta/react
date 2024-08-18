@@ -31,6 +31,13 @@ export default function MainPage() {
             <p>Age: {uncontrolledFormData.age}</p>
             <p>Email: {uncontrolledFormData.email}</p>
             <p>Gender: {uncontrolledFormData.gender}</p>
+            {uncontrolledFormData.image && (
+              <img
+                className="image"
+                src={uncontrolledFormData.image}
+                alt="Image"
+              />
+            )}
           </div>
         )}
         {reactHookFormData.name && (
@@ -40,6 +47,13 @@ export default function MainPage() {
             <p>Age: {reactHookFormData.age}</p>
             <p>Email: {reactHookFormData.email}</p>
             <p>Gender: {reactHookFormData.gender}</p>
+            {reactHookFormData.image && (
+              <img
+                className="image"
+                src={reactHookFormData.image}
+                alt="Image"
+              />
+            )}
           </div>
         )}
       </div>

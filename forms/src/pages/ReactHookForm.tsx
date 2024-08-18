@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { userSchema } from "../utils/validation";
 import { saveData } from "../store/ReactHookFormSlice";
 
-import type { FormFields } from "../types/formTypes";
+import type { FormData, FormFields } from "../types/formTypes";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -12,17 +12,29 @@ export default function ReactHookForm() {
     register,
     handleSubmit,
     formState: { errors, isDirty, isValid },
-  } = useForm({ resolver: yupResolver(userSchema), mode: "onBlur" });
+    setValue,
+  } = useForm({ resolver: yupResolver(userSchema), mode: "onChange" });
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const onSubmit = async (data: FormFields) => {
-    console.log(data);
+  const onSubmit = async (data: FormData) => {
     const isValid = await userSchema.isValid(data);
-    console.log(isValid);
     if (isValid) {
-      dispatch(saveData(data));
-      navigate("/");
+      const file = data.image;
+
+      if (file instanceof File) {
+        const reader = new FileReader();
+        reader.onload = () => {
+          const encodedImage = reader.result as string;
+          const formDataEncoded: FormFields = {
+            ...data,
+            image: encodedImage,
+          };
+          dispatch(saveData(formDataEncoded));
+          navigate("/");
+        };
+        reader.readAsDataURL(file);
+      }
     }
   };
 
@@ -125,6 +137,22 @@ export default function ReactHookForm() {
           </label>
           <input {...register("acceptTC")} type="checkbox" id="acceptTC" />
           <div className="error-message">{errors.acceptTC?.message}</div>
+        </div>
+        <div className="form-item">
+          <label htmlFor="image" className="label">
+            Upload an image
+          </label>
+          <input
+            type="file"
+            id="image"
+            onChange={(e) => {
+              if (e.target.files && e.target.files.length > 0) {
+                const file = e.target.files[0];
+                setValue("image", file);
+              }
+            }}
+          />
+          <div className="error-message">{errors.image?.message}</div>
         </div>
         <button
           disabled={!isDirty || !isValid}

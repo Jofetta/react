@@ -28,4 +28,21 @@ export const userSchema = yup.object().shape({
     .boolean()
     .isTrue("You should accept the Terms & Conditions")
     .required(),
+  image: yup
+    .mixed()
+    .required()
+    .test("fileSize", "Your file is too big", (value: unknown) => {
+      if (value instanceof File) {
+        return value.size <= 2000000;
+      }
+    })
+    .test("fileType", "Please upload a jpg or png file", (value: unknown) => {
+      if (!(value instanceof File)) {
+        return false;
+      }
+      const fileName = value.name;
+      const validExtensions = ["jpg", "jpeg", "png"];
+      const fileExtension = fileName.split(".").pop()?.toLowerCase();
+      return validExtensions.includes(fileExtension || "");
+    }),
 });
