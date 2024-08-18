@@ -10,7 +10,8 @@ export const userSchema = yup.object().shape({
     .positive("Age should be above 0")
     .integer("Please enter a number")
     .max(120)
-    .required("Please enter a number"),
+    .required("Please enter a number")
+    .typeError("Please enter a number"),
   email: yup.string().email().required(),
   password: yup.string().min(4).max(16).required(),
   password2: yup

@@ -35,3 +35,8 @@
   min-height: 20px;
   margin-top: 3px;
 }
+
+.blocked {
+  pointer-events: none;
+  background-color: burlywood;
+}

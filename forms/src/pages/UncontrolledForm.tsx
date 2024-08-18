@@ -11,7 +11,8 @@ export default function UncontrolledForm() {
   const emailInput = useRef<HTMLInputElement>(null);
   const passwordInput = useRef<HTMLInputElement>(null);
   const password2Input = useRef<HTMLInputElement>(null);
-  const genderInput = useRef<HTMLInputElement>(null);
+  const genderMaleInput = useRef<HTMLInputElement>(null);
+  const genderFemaleInput = useRef<HTMLInputElement>(null);
   const acceptTCInput = useRef<HTMLInputElement>(null);
   const nameError = useRef<HTMLDivElement | null>(null);
   const ageError = useRef<HTMLDivElement | null>(null);
@@ -42,13 +43,18 @@ export default function UncontrolledForm() {
       email: emailInput.current?.value || "",
       password: passwordInput.current?.value || "",
       password2: password2Input.current?.value || "",
-      gender: genderInput.current?.value || "",
+      gender: genderMaleInput.current?.checked
+        ? "male"
+        : genderFemaleInput.current?.checked
+          ? "female"
+          : "",
       acceptTC: acceptTCInput.current?.checked || false,
     };
 
     try {
       await userSchema.validate(data);
       dispatch(saveData(data));
+      console.log(data);
       navigate("/");
     } catch (err) {
       if (err instanceof ValidationError) {
@@ -147,22 +153,22 @@ export default function UncontrolledForm() {
           </label>
           <input
             className="radio-input"
-            name="gender"
             type="radio"
+            name="gender"
             id="male"
             value="male"
-            ref={genderInput}
+            ref={genderMaleInput}
           />
           <label htmlFor="female" className="label">
             Female
           </label>
           <input
             className="radio-input"
-            name="gender"
             type="radio"
+            name="gender"
             id="female"
             value="female"
-            ref={genderInput}
+            ref={genderFemaleInput}
           />
           <div className="error-message" ref={genderError}></div>
         </fieldset>

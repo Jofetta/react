@@ -11,8 +11,8 @@ export default function ReactHookForm() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
-  } = useForm({ resolver: yupResolver(userSchema) });
+    formState: { errors, isDirty, isValid },
+  } = useForm({ resolver: yupResolver(userSchema), mode: "onBlur" });
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -103,7 +103,6 @@ export default function ReactHookForm() {
           <input
             {...register("gender")}
             className="radio-input"
-            name="gender"
             type="radio"
             id="male"
             value="male"
@@ -114,7 +113,6 @@ export default function ReactHookForm() {
           <input
             {...register("gender")}
             className="radio-input"
-            name="gender"
             type="radio"
             id="female"
             value="female"
@@ -128,7 +126,13 @@ export default function ReactHookForm() {
           <input {...register("acceptTC")} type="checkbox" id="acceptTC" />
           <div className="error-message">{errors.acceptTC?.message}</div>
         </div>
-        <button type="submit">Submit</button>
+        <button
+          disabled={!isDirty || !isValid}
+          type="submit"
+          className="submit-button"
+        >
+          Submit
+        </button>
       </form>
     </>
   );
