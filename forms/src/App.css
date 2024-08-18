@@ -36,7 +36,36 @@
   margin-top: 3px;
 }
 
-.blocked {
-  pointer-events: none;
-  background-color: burlywood;
+.nav-container {
+  text-align: center;
+}
+
+.nav-link {
+  display: inline-block;
+  text-decoration: none;
+  color: black;
+  margin: 20px;
+  padding: 20px;
+  background-color: lightgray;
+  border-radius: 10px;
+  transition: all 0.3s ease-in-out;
+}
+
+.nav-link:hover {
+  background-color: darkgray;
+  transition: all 0.3s ease-in-out;
+}
+
+.form-data-container {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.data-block {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
