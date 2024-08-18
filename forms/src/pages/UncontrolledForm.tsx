@@ -73,7 +73,7 @@ export default function UncontrolledForm() {
 
   return (
     <>
-      <h1>Uncontrolled Approach Form</h1>
+      <h1 className="heading">Uncontrolled Approach Form</h1>
       <form className="form" onSubmit={(e) => onSubmit(e)}>
         <div className="form-item">
           <label htmlFor="name" className="label">

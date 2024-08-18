@@ -8,9 +8,9 @@ export const userSchema = yup.object().shape({
   age: yup
     .number()
     .positive("Age should be above 0")
-    .integer()
+    .integer("Please enter a number")
     .max(120)
-    .required(),
+    .required("Please enter a number"),
   email: yup.string().email().required(),
   password: yup.string().min(4).max(16).required(),
   password2: yup
