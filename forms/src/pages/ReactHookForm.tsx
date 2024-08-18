@@ -3,9 +3,10 @@ import { userSchema } from "../utils/validation";
 import { saveData } from "../store/ReactHookFormSlice";
 
 import type { FormData, FormFields } from "../types/formTypes";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { RootState } from "../store/store";
 
 export default function ReactHookForm() {
   const {
@@ -16,6 +17,7 @@ export default function ReactHookForm() {
   } = useForm({ resolver: yupResolver(userSchema), mode: "onChange" });
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const countries = useSelector((state: RootState) => state.countries.countries)
 
   const onSubmit = async (data: FormData) => {
     const isValid = await userSchema.isValid(data);
@@ -132,13 +134,6 @@ export default function ReactHookForm() {
           <div className="error-message">{errors.gender?.message}</div>
         </fieldset>
         <div className="form-item">
-          <label htmlFor="acceptTC" className="label">
-            Accept Terms and Conditions
-          </label>
-          <input {...register("acceptTC")} type="checkbox" id="acceptTC" />
-          <div className="error-message">{errors.acceptTC?.message}</div>
-        </div>
-        <div className="form-item">
           <label htmlFor="image" className="label">
             Upload an image
           </label>
@@ -153,6 +148,20 @@ export default function ReactHookForm() {
             }}
           />
           <div className="error-message">{errors.image?.message}</div>
+        </div>
+        <div className="form-item">
+          <label className='label' htmlFor="country">Country</label>
+          <input {...register('country')} list="countryOptions" id="country" />
+          <datalist id="countryOptions">
+            {countries.map((country, index) => (<option key={index} value={country} >{ country }</option>) )}
+          </datalist>
+        </div>
+        <div className="form-item">
+          <label htmlFor="acceptTC" className="label">
+            Accept Terms and Conditions
+          </label>
+          <input {...register("acceptTC")} type="checkbox" id="acceptTC" />
+          <div className="error-message">{errors.acceptTC?.message}</div>
         </div>
         <button
           disabled={!isDirty || !isValid}

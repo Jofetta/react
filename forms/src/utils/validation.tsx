@@ -13,7 +13,24 @@ export const userSchema = yup.object().shape({
     .required("Please enter a number")
     .typeError("Please enter a number"),
   email: yup.string().email().required(),
-  password: yup.string().min(4).max(16).required(),
+  password: yup
+    .string()
+    .min(6)
+    .max(16)
+    .required()
+    .matches(/^(?=.*[0-9])/, "Weak password: include at least one number")
+    .matches(
+      /^(?=.*[0-9])(?=.*[a-z])/,
+      "Weak password: include at least one lowercase letter",
+    )
+    .matches(
+      /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])/,
+      "Weak password: include at least one uppercase letter",
+    )
+    .matches(
+      /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?])/,
+      "Medium password: include at least one special symbol",
+    ),
   password2: yup
     .string()
     .when("password", (password, field) =>
@@ -45,4 +62,5 @@ export const userSchema = yup.object().shape({
       const fileExtension = fileName.split(".").pop()?.toLowerCase();
       return validExtensions.includes(fileExtension || "");
     }),
+   country: yup.string().required(),
 });

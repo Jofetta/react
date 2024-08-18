@@ -7,6 +7,7 @@ export type FormFields = {
   gender?: string;
   acceptTC?: boolean;
   image: string | null;
+  country?: string;
 };
 
 export type FormData = {
@@ -18,4 +19,5 @@ export type FormData = {
   gender?: string;
   acceptTC?: boolean;
   image: unknown;
+  country?: string;
 };
